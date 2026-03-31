@@ -10,7 +10,6 @@ import Image from "next/image"
 import { useEffect, useState } from "react"
 import { useTheme } from "next-themes"
 import { StatusBadge } from "./status-badge"
-import { LlmBackground } from "./llm-background"
 
 const roles = [
   "Neural Architectures",
@@ -62,13 +61,30 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-background transition-colors duration-500">
       
-      {/* Replaced old static glows and grids with the new dynamic background component */}
-      <LlmBackground />
+      {/* --- PROFESSIONAL DYNAMIC BACKGROUND --- */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        
+        {/* Light Mode Diffused Glows */}
+        <div className={`absolute inset-0 transition-opacity duration-1000 ${mounted && resolvedTheme === 'light' ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="absolute -top-[20%] -left-[10%] w-[70vw] h-[70vw] rounded-full bg-primary/10 blur-[120px]" />
+          <div className="absolute -bottom-[20%] -right-[10%] w-[70vw] h-[70vw] rounded-full bg-indigo-500/10 blur-[120px]" />
+        </div>
+
+        {/* Dark Mode Diffused Glows */}
+        <div className={`absolute inset-0 transition-opacity duration-1000 ${mounted && resolvedTheme === 'dark' ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="absolute -top-[20%] -left-[10%] w-[70vw] h-[70vw] rounded-full bg-primary/20 blur-[150px]" />
+          <div className="absolute -bottom-[20%] -right-[10%] w-[70vw] h-[70vw] rounded-full bg-purple-600/20 blur-[150px]" />
+        </div>
+
+        {/* Subtle Engineering Grid Overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+      </div>
+      {/* --------------------------------------- */}
       
       <div className="relative mx-auto max-w-7xl px-6 py-28 md:py-36 lg:py-44 z-10">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-20 items-center">
           <div className="space-y-10">
-            <div className="inline-flex items-center gap-3 rounded-full border border-primary/40 bg-primary/10 px-5 py-2.5 text-sm font-medium text-primary backdrop-blur-sm">
+            <div className="inline-flex items-center gap-3 rounded-full border border-primary/40 bg-primary/10 px-5 py-2.5 text-sm font-medium text-primary backdrop-blur-sm shadow-sm">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
@@ -137,13 +153,13 @@ export function HeroSection() {
             <div className="relative aspect-square w-80 sm:w-96 lg:w-[420px]">
               <div className="absolute -inset-4 rounded-3xl border border-primary/10 animate-pulse-glow" />
               
-              <div className="absolute inset-0 rounded-2xl border border-border bg-card overflow-hidden transition-all duration-500 flex items-center justify-center p-4">
+              <div className="absolute inset-0 rounded-2xl border border-border bg-card/60 backdrop-blur-sm overflow-hidden transition-all duration-500 flex items-center justify-center p-4 shadow-xl">
                 <div className="relative h-full w-full">
                   <Image 
                     src="/avatar-dark.png"
                     alt="Dark Theme Avatar"
                     fill
-                    className={`object-contain transition-opacity duration-300 ${
+                    className={`object-contain transition-opacity duration-500 ${
                       mounted && resolvedTheme === 'dark' ? 'opacity-100' : 'opacity-0'
                     }`}
                     priority
@@ -152,7 +168,7 @@ export function HeroSection() {
                     src="/avatar-light.png"
                     alt="Light Theme Avatar"
                     fill
-                    className={`object-contain transition-opacity duration-300 ${
+                    className={`object-contain transition-opacity duration-500 ${
                       mounted && resolvedTheme === 'light' ? 'opacity-100' : 'opacity-0'
                     }`}
                     priority
@@ -160,7 +176,8 @@ export function HeroSection() {
                 </div>
               </div>
 
-              <div className="absolute -top-4 -right-2 md:-top-6 md:-right-6 z-10">
+              {/* Status Badge */}
+              <div className="absolute -top-4 -right-2 md:-top-6 md:-right-6 z-20">
                 <StatusBadge />
               </div>
               
