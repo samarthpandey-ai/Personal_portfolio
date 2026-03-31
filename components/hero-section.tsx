@@ -169,13 +169,13 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Right Side: Fixed Avatar Frame without Unwanted Shadows */}
+          {/* Right Side: Cleaned up overlays and shadows */}
           <div className="relative mx-auto lg:mx-0">
             <div className="relative aspect-square w-80 sm:w-96 lg:w-[420px]">
               <div className="absolute -inset-4 rounded-3xl border border-primary/10 animate-pulse-glow" />
               
-              {/* REMOVED: glow-primary-soft to eliminate the shadow over the avatar area */}
-              <div className="absolute inset-0 rounded-2xl border border-border bg-card overflow-hidden shadow-2xl transition-all duration-500 flex items-center justify-center p-4">
+              {/* REMOVED shadow-2xl from this card to stop it clashing */}
+              <div className="absolute inset-0 rounded-2xl border border-border bg-card overflow-hidden transition-all duration-500 flex items-center justify-center p-4">
                 <div className="relative h-full w-full">
                   <Image 
                     src="/avatar-dark.png"
@@ -198,11 +198,11 @@ export function HeroSection() {
                 </div>
                 
                 <div className="absolute inset-0 dot-pattern opacity-10 dark:opacity-30" />
-                <div className="absolute top-0 right-0 h-40 w-40 bg-gradient-to-bl from-primary/10 via-primary/5 to-transparent" />
+                {/* DELETED the top-right gradient overlay div that was creating a fake shadow */}
               </div>
 
-              {/* Status Badge - Now floating cleanly without container shadow interference */}
-              <div className="absolute -top-6 -right-6 rounded-2xl border border-primary/40 bg-card px-5 py-4 shadow-xl">
+              {/* REMOVED shadow-xl from the badge itself */}
+              <div className="absolute -top-6 -right-6 rounded-2xl border border-primary/40 bg-card px-5 py-4">
                 <div className="text-center">
                   <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Status</p>
                   <p className="text-lg font-bold text-primary flex items-center gap-2 justify-center">
