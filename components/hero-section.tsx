@@ -9,7 +9,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import { useTheme } from "next-themes"
-import { StatusBadge } from "./status-badge" // IMPORTED THE NEW COMPONENT HERE
+import { StatusBadge } from "./status-badge"
 
 const roles = [
   "Neural Architectures",
@@ -20,19 +20,6 @@ const roles = [
 ]
 
 const fullName = "Samarth Kr Pandey"
-
-const neuralNodes = [
-  { x: 10, y: 20, size: 4 },
-  { x: 25, y: 35, size: 3 },
-  { x: 15, y: 55, size: 5 },
-  { x: 30, y: 70, size: 3 },
-  { x: 85, y: 15, size: 4 },
-  { x: 90, y: 40, size: 3 },
-  { x: 80, y: 60, size: 5 },
-  { x: 75, y: 80, size: 4 },
-  { x: 50, y: 10, size: 3 },
-  { x: 55, y: 85, size: 4 },
-]
 
 export function HeroSection() {
   const { resolvedTheme } = useTheme()
@@ -77,29 +64,6 @@ export function HeroSection() {
         <div className="absolute top-1/4 -left-32 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-primary/20 via-primary/5 to-transparent blur-[120px] animate-neural-pulse opacity-60 dark:opacity-100" />
         <div className="absolute bottom-1/4 -right-32 h-[500px] w-[500px] rounded-full bg-gradient-to-tl from-purple-500/15 via-primary/5 to-transparent blur-[100px] animate-neural-pulse opacity-50 dark:opacity-100" style={{ animationDelay: '1.5s' }} />
         <div className="absolute inset-0 ai-grid-pattern [mask-image:radial-gradient(ellipse_80%_60%_at_50%_20%,#000_30%,transparent_100%)] opacity-20 dark:opacity-100" />
-        
-        {mounted && (
-          <svg className="absolute inset-0 w-full h-full opacity-20 dark:opacity-30" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="var(--primary)" stopOpacity="0.2" />
-              </linearGradient>
-              <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.4" />
-                <stop offset="100%" stopColor="var(--primary)" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-            {[...Array(12)].map((_, i) => (
-              <line key={i} x1={`${10 + i * 8}%`} y1="0%" x2={`${85 - i * 6}%`} y2="100%" stroke="url(#lineGrad)" strokeWidth="0.5" />
-            ))}
-            {neuralNodes.map((node, i) => (
-              <g key={i}>
-                <circle cx={`${node.x}%`} cy={`${node.y}%`} r={node.size} fill="url(#nodeGrad)" className="animate-pulse-glow" style={{ animationDelay: `${i * 0.3}s` }} />
-              </g>
-            ))}
-          </svg>
-        )}
       </div>
       
       <div className="relative mx-auto max-w-7xl px-6 py-28 md:py-36 lg:py-44">
@@ -195,11 +159,8 @@ export function HeroSection() {
                     priority
                   />
                 </div>
-                
-                <div className="absolute inset-0 dot-pattern opacity-10 dark:opacity-30" />
               </div>
 
-              {/* THIS IS WHERE WE USE YOUR NEW COMPONENT */}
               <div className="absolute -top-4 -right-2 md:-top-6 md:-right-6 z-10">
                 <StatusBadge />
               </div>
