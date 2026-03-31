@@ -6,7 +6,9 @@ import {
   School, BookOpen, Code 
 } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { useEffect, useState } from "react"
+import { useTheme } from "next-themes"
 
 const roles = [
   "Neural Architectures",
@@ -32,13 +34,12 @@ const neuralNodes = [
 ]
 
 export function HeroSection() {
-  const [showEmail, setShowEmail] = useState(false)
-  const [copied, setCopied] = useState(false)
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
   const [currentRole, setCurrentRole] = useState(0)
   const [displayedName, setDisplayedName] = useState("")
   const [isTyping, setIsTyping] = useState(true)
   const [showCursor, setShowCursor] = useState(true)
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -70,14 +71,10 @@ export function HeroSection() {
   }, [])
 
   return (
-    /* UPDATED: Added bg-background transition */
     <section className="relative min-h-screen overflow-hidden bg-background transition-colors duration-500">
       <div className="absolute inset-0">
-        {/* UPDATED: Adjusted opacity of glows for light mode visibility */}
         <div className="absolute top-1/4 -left-32 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-primary/20 via-primary/5 to-transparent blur-[120px] animate-neural-pulse opacity-60 dark:opacity-100" />
         <div className="absolute bottom-1/4 -right-32 h-[500px] w-[500px] rounded-full bg-gradient-to-tl from-purple-500/15 via-primary/5 to-transparent blur-[100px] animate-neural-pulse opacity-50 dark:opacity-100" style={{ animationDelay: '1.5s' }} />
-        
-        {/* UPDATED: Grid pattern now uses theme border color */}
         <div className="absolute inset-0 ai-grid-pattern [mask-image:radial-gradient(ellipse_80%_60%_at_50%_20%,#000_30%,transparent_100%)] opacity-20 dark:opacity-100" />
         
         {mounted && (
@@ -93,26 +90,11 @@ export function HeroSection() {
               </linearGradient>
             </defs>
             {[...Array(12)].map((_, i) => (
-              <line
-                key={i}
-                x1={`${10 + i * 8}%`}
-                y1="0%"
-                x2={`${85 - i * 6}%`}
-                y2="100%"
-                stroke="url(#lineGrad)"
-                strokeWidth="0.5"
-              />
+              <line key={i} x1={`${10 + i * 8}%`} y1="0%" x2={`${85 - i * 6}%`} y2="100%" stroke="url(#lineGrad)" strokeWidth="0.5" />
             ))}
             {neuralNodes.map((node, i) => (
               <g key={i}>
-                <circle
-                  cx={`${node.x}%`}
-                  cy={`${node.y}%`}
-                  r={node.size}
-                  fill="url(#nodeGrad)"
-                  className="animate-pulse-glow"
-                  style={{ animationDelay: `${i * 0.3}s` }}
-                />
+                <circle cx={`${node.x}%`} cy={`${node.y}%`} r={node.size} fill="url(#nodeGrad)" className="animate-pulse-glow" style={{ animationDelay: `${i * 0.3}s` }} />
               </g>
             ))}
           </svg>
@@ -140,12 +122,8 @@ export function HeroSection() {
               </div>
               
               <h1 className="text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl xl:text-8xl">
-                <span className="text-gradient">
-                  {displayedName}
-                </span>
-                <span 
-                  className={`inline-block w-[4px] h-[0.85em] bg-primary ml-2 align-middle rounded-sm ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`}
-                />
+                <span className="text-gradient">{displayedName}</span>
+                <span className={`inline-block w-[4px] h-[0.85em] bg-primary ml-2 align-middle rounded-sm ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`} />
               </h1>
               
               <div className="flex flex-wrap items-center gap-3 text-xl sm:text-2xl">
@@ -177,66 +155,40 @@ export function HeroSection() {
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
-              <Link
-                href="/projects"
-                className="group relative inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-primary via-primary to-cyan-400 px-8 py-4 text-sm font-semibold text-primary-foreground shadow-xl shadow-primary/30 transition-all hover:shadow-2xl hover:shadow-primary/40 hover:scale-[1.02] overflow-hidden"
-              >
+              <Link href="/projects" className="group relative inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-primary via-primary to-cyan-400 px-8 py-4 text-sm font-semibold text-primary-foreground shadow-xl shadow-primary/30 transition-all hover:shadow-2xl hover:shadow-primary/40 hover:scale-[1.02] overflow-hidden">
                 <span className="relative z-10 flex items-center gap-3">
                   <Cpu className="h-4 w-4" />
                   View Projects
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
-              <Link
-                href="/about"
-                className="group inline-flex items-center gap-3 rounded-2xl border border-border bg-card px-8 py-4 text-sm font-semibold text-foreground backdrop-blur-sm transition-all hover:border-primary/50 hover:scale-[1.02] shadow-sm"
-              >
+              <Link href="/about" className="group inline-flex items-center gap-3 rounded-2xl border border-border bg-card px-8 py-4 text-sm font-semibold text-foreground backdrop-blur-sm transition-all hover:border-primary/50 hover:scale-[1.02] shadow-sm">
                 <Network className="h-4 w-4 text-primary" />
                 About Me
               </Link>
             </div>
-
-            {/* Social Links Updated for Theme */}
-            <div className="flex items-center gap-6 pt-2">
-              <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Connect</span>
-              <div className="h-px flex-1 bg-gradient-to-r from-border to-transparent max-w-24" />
-              <div className="flex items-center gap-1">
-                {[
-                  { href: "https://github.com/samarthpandey-ai", icon: Github, label: "GitHub" },
-                  { href: "https://www.linkedin.com/in/samarth-pandey-137137293/", icon: Linkedin, label: "LinkedIn" },
-                ].map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group rounded-xl p-3 text-muted-foreground transition-all hover:bg-card hover:text-primary border border-transparent hover:border-border"
-                    aria-label={social.label}
-                  >
-                    <social.icon className="h-5 w-5 transition-transform group-hover:scale-110" />
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
 
-          {/* Right Side: Photo Frame Updated for Theme */}
+          {/* Right Side: Theme-Aware Avatar */}
           <div className="relative mx-auto lg:mx-0">
-            <div className="relative aspect-[4/5] w-80 sm:w-96 lg:w-[420px]">
-              <div className="absolute inset-0 rounded-2xl border border-border bg-card overflow-hidden shadow-2xl transition-colors duration-500">
-                <div className="absolute inset-0 dot-pattern opacity-10 dark:opacity-30" />
-                
-                <div className="absolute inset-4 rounded-xl bg-secondary/30 flex items-center justify-center overflow-hidden border border-border/40">
-                  <div className="text-center space-y-6 p-8">
-                    <div className="mx-auto h-32 w-32 rounded-full border-2 border-dashed border-primary/50 bg-primary/5 flex items-center justify-center">
-                      <Cpu className="h-12 w-12 text-primary/70" />
-                    </div>
-                    <div className="space-y-2">
-                      <p className="text-sm font-semibold text-foreground">Samarth Kr Pandey</p>
-                      <p className="text-xs text-muted-foreground">Professional headshot</p>
-                    </div>
-                  </div>
+            <div className="relative aspect-square w-80 sm:w-96 lg:w-[420px]">
+              <div className="absolute -inset-4 rounded-3xl border border-primary/10 animate-pulse-glow" />
+              
+              <div className="absolute inset-0 rounded-2xl border border-border bg-card overflow-hidden shadow-2xl transition-all duration-500 flex items-center justify-center p-4">
+                <div className="relative h-full w-full">
+                  {mounted && (
+                    <Image 
+                      src={resolvedTheme === 'dark' ? '/avatar-dark.png' : '/avatar-light.png'}
+                      alt="Samarth Kr Pandey Avatar"
+                      fill
+                      className="object-contain transition-opacity duration-500"
+                      priority
+                    />
+                  )}
                 </div>
+                
+                <div className="absolute inset-0 dot-pattern opacity-10 dark:opacity-30" />
+                <div className="absolute top-0 right-0 h-40 w-40 bg-gradient-to-bl from-primary/10 via-primary/5 to-transparent" />
               </div>
 
               {/* Status Badge */}
