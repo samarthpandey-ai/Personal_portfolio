@@ -40,7 +40,8 @@ export function Footer() {
           <div className="lg:col-span-1 space-y-6">
             <Link href="/" className="group inline-flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 backdrop-blur-sm transition-all group-hover:bg-primary/20 group-hover:scale-105">
-                <Cpu className="h-6 w-6 text-primary" />
+                {/* CHANGED FROM CPU TO NETWORK TO MATCH NEW BRANDING */}
+                <Network className="h-6 w-6 text-primary" />
               </div>
               <div>
                 <span className="text-xl font-bold text-foreground transition-colors leading-tight">Samarth Kr</span>
