@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Menu, X, Cpu, Network, ArrowRight } from "lucide-react"
 import { useState, useEffect } from "react"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -71,11 +72,16 @@ export function Navigation() {
           </div>
         </div>
 
-        {/* CTA Button */}
-        <div className="hidden md:flex items-center gap-4">
+        {/* Right Side Controls (Toggle + CTA + Mobile Menu) */}
+        <div className="flex items-center gap-3 md:gap-4">
+          
+          {/* Theme Toggle - Visible on both Mobile and Desktop */}
+          <ThemeToggle />
+
+          {/* CTA Button - Hidden on Mobile, Visible on Desktop */}
           <a
             href="mailto:your@email.com"
-            className="group relative inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-primary to-cyan-400 px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition-all hover:shadow-xl hover:shadow-primary/40 hover:scale-[1.02] overflow-hidden"
+            className="hidden md:inline-flex group relative items-center gap-2.5 rounded-xl bg-gradient-to-r from-primary to-cyan-400 px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition-all hover:shadow-xl hover:shadow-primary/40 hover:scale-[1.02] overflow-hidden"
           >
             <span className="relative z-10 flex items-center gap-2">
               <Network className="h-4 w-4" />
@@ -84,24 +90,25 @@ export function Navigation() {
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
           </a>
-        </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className={cn(
-            "flex h-12 w-12 items-center justify-center rounded-xl border transition-all md:hidden",
-            mobileMenuOpen 
-              ? "border-primary/50 bg-primary/15 text-primary" 
-              : "border-border/60 bg-card/50 text-foreground hover:bg-card hover:border-primary/40"
-          )}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+          {/* Mobile Menu Button - Visible on Mobile, Hidden on Desktop */}
+          <button
+            className={cn(
+              "flex h-12 w-12 items-center justify-center rounded-xl border transition-all md:hidden",
+              mobileMenuOpen 
+                ? "border-primary/50 bg-primary/15 text-primary" 
+                : "border-border/60 bg-card/50 text-foreground hover:bg-card hover:border-primary/40"
+            )}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+
+        </div>
       </nav>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation Dropdown */}
       <div 
         className={cn(
           "md:hidden overflow-hidden transition-all duration-400 ease-out",
