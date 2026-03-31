@@ -1,8 +1,10 @@
+"use client"
+
 import { Github, Linkedin, Mail, Twitter, Cpu, Heart, ArrowUpRight, Network } from "lucide-react"
 import Link from "next/link"
 
 const socialLinks = [
-  { href: "https://github.com", icon: Github, label: "GitHub" },
+  { href: "https://github.com/samarthpandey-ai", icon: Github, label: "GitHub" },
   { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
   { href: "https://twitter.com", icon: Twitter, label: "Twitter" },
   { href: "mailto:your@email.com", icon: Mail, label: "Email" },
@@ -17,36 +19,36 @@ const navLinks = [
 
 const quickLinks = [
   { href: "#", label: "Resume" },
-  { href: "#", label: "Kaggle" },
+  { href: "https://leetcode.com/samp123", label: "LeetCode" },
   { href: "#", label: "Google Scholar" },
   { href: "#", label: "HuggingFace" },
 ]
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-border/40 bg-card/40 backdrop-blur-sm">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-card/30 to-transparent" />
-      <div className="absolute top-0 left-1/4 h-40 w-40 rounded-full bg-primary/5 blur-[100px]" />
-      <div className="absolute bottom-0 right-1/4 h-40 w-40 rounded-full bg-purple-500/5 blur-[100px]" />
+    // UPDATED: Removed bg-card and added bg-transparent to let the background orbs flow through
+    <footer className="relative border-t border-border/40 bg-transparent transition-colors duration-500">
+      
+      {/* Subtle radial glow to make the footer text readable without blocking the background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background/50 pointer-events-none" />
 
-      <div className="relative mx-auto max-w-7xl px-6 py-16 md:py-20">
+      <div className="relative mx-auto max-w-7xl px-6 py-16 md:py-20 z-10">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+          
           {/* Brand Column */}
           <div className="lg:col-span-1 space-y-6">
             <Link href="/" className="group inline-flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-cyan-400/10 border border-primary/40 transition-all group-hover:shadow-lg group-hover:shadow-primary/25">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 backdrop-blur-sm transition-all group-hover:bg-primary/20 group-hover:scale-105">
                 <Cpu className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <span className="text-xl font-bold text-foreground">Neural</span>
-                <span className="text-xl font-bold text-primary">.dev</span>
-                <p className="text-xs text-muted-foreground">ML Engineer</p>
+                <span className="text-xl font-bold text-foreground transition-colors leading-tight">Samarth Kr</span>
+                <p className="text-sm font-bold text-primary tracking-tighter mt-[-2px]">Pandey</p>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-widest mt-1">ML Engineer</p>
               </div>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Engineering intelligent AI systems. Specializing in deep learning, 
-              NLP, and production-ready machine learning solutions.
+              Engineering intelligent AI systems at the intersection of deep learning and NLP.
             </p>
             
             {/* Social Links */}
@@ -57,7 +59,7 @@ export function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-border/60 bg-card/50 text-muted-foreground transition-all hover:border-primary/50 hover:bg-gradient-to-br hover:from-primary hover:to-cyan-400 hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/20"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card/30 text-muted-foreground transition-all hover:border-primary/50 hover:bg-primary hover:text-primary-foreground hover:-translate-y-1"
                   aria-label={link.label}
                 >
                   <link.icon className="h-4 w-4" />
@@ -68,8 +70,8 @@ export function Footer() {
 
           {/* Navigation Column */}
           <div className="space-y-6">
-            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider flex items-center gap-2">
-              <Network className="h-4 w-4 text-primary" />
+            <h3 className="text-xs font-bold text-foreground uppercase tracking-[0.2em] flex items-center gap-2">
+              <Network className="h-3 w-3 text-primary" />
               Navigation
             </h3>
             <nav className="flex flex-col gap-3">
@@ -80,7 +82,7 @@ export function Footer() {
                   className="group flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
                   {link.label}
-                  <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
                 </Link>
               ))}
             </nav>
@@ -88,8 +90,8 @@ export function Footer() {
 
           {/* Quick Links Column */}
           <div className="space-y-6">
-            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider flex items-center gap-2">
-              <Cpu className="h-4 w-4 text-primary" />
+            <h3 className="text-xs font-bold text-foreground uppercase tracking-[0.2em] flex items-center gap-2">
+              <Cpu className="h-3 w-3 text-primary" />
               Resources
             </h3>
             <nav className="flex flex-col gap-3">
@@ -97,10 +99,12 @@ export function Footer() {
                 <a
                   key={link.label}
                   href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
                   {link.label}
-                  <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
                 </a>
               ))}
             </nav>
@@ -108,30 +112,30 @@ export function Footer() {
 
           {/* Newsletter Column */}
           <div className="space-y-6">
-            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">Stay Connected</h3>
+            <h3 className="text-xs font-bold text-foreground uppercase tracking-[0.2em]">Stay Connected</h3>
             <p className="text-sm text-muted-foreground">
               Get updates on new ML projects and research insights.
             </p>
-            <div className="flex gap-2">
+            <div className="flex flex-col gap-3">
               <input
                 type="email"
                 placeholder="your@email.com"
-                className="flex-1 rounded-xl border border-border/60 bg-card/50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/20 backdrop-blur-sm"
+                className="w-full rounded-xl border border-border/60 bg-card/20 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/20 backdrop-blur-sm transition-all"
               />
-              <button className="rounded-xl bg-gradient-to-r from-primary to-cyan-400 px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:shadow-lg hover:shadow-primary/30">
-                Join
+              <button className="w-full rounded-xl bg-primary px-5 py-3 text-sm font-bold text-primary-foreground transition-all hover:shadow-lg hover:shadow-primary/20 active:scale-[0.98]">
+                Join Newsletter
               </button>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-border/40 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground flex items-center gap-1.5">
-            Crafted with <Heart className="h-3.5 w-3.5 text-red-500 fill-red-500" /> using Next.js & AI
+        <div className="mt-16 pt-8 border-t border-border/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <p className="text-xs text-muted-foreground flex items-center gap-1.5">
+            Designed & Developed with <Heart className="h-3 w-3 text-red-500 fill-red-500 animate-pulse" /> by Samarth Pandey
           </p>
-          <p className="text-sm text-muted-foreground">
-            {new Date().getFullYear()} Neural.dev. All rights reserved.
+          <p className="text-xs text-muted-foreground font-mono">
+            © {new Date().getFullYear()} All rights reserved.
           </p>
         </div>
       </div>
