@@ -8,25 +8,23 @@ import { Sparkles, Archive, Filter } from "lucide-react"
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState("All")
 
-  // 1. Sort all projects by date first
   const sortedAll = useMemo(() => {
     return [...myProjects].sort((a, b) => 
       new Date(b.date).getTime() - new Date(a.date).getTime()
     )
   }, [])
 
-  // 2. Logic: Top 2 are "Recently Added"
   const recentlyAdded = sortedAll.slice(0, 2)
   const remainingPool = sortedAll.slice(2)
 
-  // 3. Apply Filter ONLY to the remaining pool
   const filteredRemaining = useMemo(() => {
     if (activeFilter === "All") return remainingPool
     return remainingPool.filter(p => p.tags.includes(activeFilter))
   }, [activeFilter, remainingPool])
 
   return (
-    <div className="min-h-screen bg-[#030711] text-slate-50 pt-32 pb-24">
+    /* CHANGED: bg-[#030711] -> bg-background | text-slate-50 -> text-foreground */
+    <div className="min-h-screen bg-background text-foreground pt-32 pb-24 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* SECTION 1: RECENTLY ADDED */}
@@ -45,26 +43,29 @@ export default function ProjectsPage() {
         </div>
 
         {/* SECTION 2: THE ARCHIVE (REMAINING) */}
-        <div className="pt-20 border-t border-white/5">
+        {/* CHANGED: border-white/5 -> border-border */}
+        <div className="pt-20 border-t border-border">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
             <div className="flex items-center gap-3">
-              <div className="h-8 w-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">
-                <Archive className="h-4 w-4 text-slate-400" />
+              {/* CHANGED: bg-white/5 -> bg-muted | border-white/10 -> border-border */}
+              <div className="h-8 w-8 rounded-lg bg-muted flex items-center justify-center border border-border">
+                <Archive className="h-4 w-4 text-muted-foreground" />
               </div>
-              <h2 className="text-3xl font-bold tracking-tight">Project <span className="text-slate-500">Archive</span></h2>
+              <h2 className="text-3xl font-bold tracking-tight">Project <span className="text-muted-foreground">Archive</span></h2>
             </div>
 
-            {/* Filter Bar - Exclusive to Archive */}
+            {/* Filter Bar */}
             <div className="flex items-center gap-3 overflow-x-auto pb-2 md:pb-0">
-              <Filter className="h-4 w-4 text-slate-500 shrink-0" />
+              <Filter className="h-4 w-4 text-muted-foreground shrink-0" />
               {["All", "NLP", "LLM", "ML", "Python"].map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setActiveFilter(cat)}
+                  /* CHANGED: text-slate-500 -> text-muted-foreground | border-white/10 -> border-border */
                   className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all border ${
                     activeFilter === cat 
-                    ? "bg-primary text-black border-primary" 
-                    : "border-white/10 text-slate-500 hover:border-primary/40 hover:text-slate-300"
+                    ? "bg-primary text-primary-foreground border-primary" 
+                    : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
                   }`}
                 >
                   {cat}
@@ -81,12 +82,12 @@ export default function ProjectsPage() {
               ))}
             </div>
           ) : (
-            <div className="py-20 text-center border border-dashed border-white/10 rounded-3xl">
-              <p className="text-slate-500">No projects found in this category.</p>
+            /* CHANGED: border-white/10 -> border-border */
+            <div className="py-20 text-center border border-dashed border-border rounded-3xl">
+              <p className="text-muted-foreground">No projects found in this category.</p>
             </div>
           )}
         </div>
-
       </div>
     </div>
   )
