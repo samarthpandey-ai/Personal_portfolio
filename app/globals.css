@@ -4,41 +4,31 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Clean Light AI Theme - Professional & High Contrast */
-  --background: oklch(0.99 0.005 270); /* Near white */
-  --foreground: oklch(0.15 0.02 270);  /* Deep slate */
-  --card: oklch(1 0 0);               /* Pure white */
-  --card-foreground: oklch(0.15 0.02 270);
+  /* Clean Light Mode */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0.013 190);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0.013 190);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.02 270);
-  --primary: oklch(0.65 0.20 195);     /* Sharper cyan for visibility on white */
-  --primary-foreground: oklch(0.99 0.005 270);
-  --secondary: oklch(0.92 0.01 270);   /* Soft gray */
-  --secondary-foreground: oklch(0.20 0.02 270);
-  --muted: oklch(0.94 0.01 270);
-  --muted-foreground: oklch(0.45 0.02 270);
-  --accent: oklch(0.65 0.20 195);
-  --accent-foreground: oklch(0.99 0.005 270);
-  --destructive: oklch(0.55 0.20 25);
-  --destructive-foreground: oklch(0.99 0.005 270);
-  --border: oklch(0.85 0.02 270);      /* Light border */
-  --input: oklch(0.85 0.02 270);
-  --ring: oklch(0.65 0.20 195);
+  --popover-foreground: oklch(0.145 0.013 190);
+  --primary: oklch(0.205 0.013 190);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0.01 270);
+  --secondary-foreground: oklch(0.205 0.013 190);
+  --muted: oklch(0.97 0.01 270);
+  --muted-foreground: oklch(0.556 0.013 190);
+  --accent: oklch(0.97 0.01 270);
+  --accent-foreground: oklch(0.205 0.013 190);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0.013 190);
+  --input: oklch(0.922 0.013 190);
+  --ring: oklch(0.87 0.013 190);
   --radius: 0.75rem;
-  
-  /* Sidebar Light */
-  --sidebar: oklch(0.97 0.005 270);
-  --sidebar-foreground: oklch(0.20 0.02 270);
-  --sidebar-primary: oklch(0.65 0.20 195);
-  --sidebar-primary-foreground: oklch(0.99 0.005 270);
-  --sidebar-accent: oklch(0.92 0.01 270);
-  --sidebar-accent-foreground: oklch(0.20 0.02 270);
-  --sidebar-border: oklch(0.85 0.02 270);
-  --sidebar-ring: oklch(0.65 0.20 195);
 }
 
 .dark {
-  /* Your current fantastic Dark AI Theme - No changes here */
+  /* RESTORED: Your original Premium AI/ML theme */
   --background: oklch(0.08 0.015 270);
   --foreground: oklch(0.97 0.005 270);
   --card: oklch(0.11 0.018 270);
@@ -58,12 +48,4 @@
   --border: oklch(0.20 0.02 270);
   --input: oklch(0.14 0.02 270);
   --ring: oklch(0.78 0.18 195);
-  --sidebar: oklch(0.11 0.018 270);
-  --sidebar-foreground: oklch(0.97 0.005 270);
-  --sidebar-primary: oklch(0.78 0.18 195);
-  --sidebar-primary-foreground: oklch(0.08 0.015 270);
-  --sidebar-accent: oklch(0.14 0.02 270);
-  --sidebar-accent-foreground: oklch(0.95 0.005 270);
-  --sidebar-border: oklch(0.20 0.02 270);
-  --sidebar-ring: oklch(0.78 0.18 195);
 }
