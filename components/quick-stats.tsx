@@ -60,7 +60,6 @@ export function QuickStats() {
     leetcode: 69
   })
 
-  // FIXED: Corrected the Date comparison logic
   const latestTwo = useMemo(() => {
     return [...myProjects]
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -121,7 +120,8 @@ export function QuickStats() {
   ]
 
   return (
-    <section className="relative overflow-hidden bg-background">
+    // UPDATED: Changed bg-background to bg-transparent to show the LlmBackground
+    <section className="relative overflow-hidden bg-transparent">
       <div className="relative mx-auto max-w-7xl px-6 py-24">
         <div className="mb-16 text-center">
           <div className="inline-flex items-center gap-3 rounded-full border border-primary/40 bg-primary/10 px-6 py-3 text-sm font-medium text-primary mb-8">
@@ -136,7 +136,7 @@ export function QuickStats() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {statsList.map((stat, index) => (
-            <div key={index} className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/40 shadow-sm">
+            <div key={index} className="group relative overflow-hidden rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-6 transition-all hover:border-primary/40 shadow-sm">
               <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity`} />
               <stat.icon className="h-6 w-6 text-primary mb-4 relative z-10" />
               <div className="relative space-y-1 z-10">
