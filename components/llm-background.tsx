@@ -7,6 +7,7 @@ export function LlmBackground() {
   const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
+  // Ensure component is mounted before checking theme to avoid hydration mismatch flashes
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -19,9 +20,8 @@ export function LlmBackground() {
 
   return (
     <div className="absolute inset-0 -z-10 w-full h-full overflow-hidden">
-      {/* Base Layer: A subtle topographic contours texture, 
-        extremely subtle in light mode and slightly more defined in dark.
-        Crucially, no dots, just professional lines.
+      {/* Base topographical engineering lines - professional, not buggy dots. 
+        Subtly different opacity for each theme.
       */}
       <div className="absolute inset-0 z-0">
         <svg
@@ -40,23 +40,30 @@ export function LlmBackground() {
             strokeWidth="0.5"
             fill="none"
           />
-          {/* Add more contoured lines for complex depth, and so on... */}
+          {/* Add more contoured lines for a complex topographical network... */}
         </svg>
       </div>
 
-      {/* Light Mode specific Layer */}
-      <div className={`absolute inset-0 z-10 transition-opacity duration-500 ${isDark ? "opacity-0" : "opacity-100"}`}>
-        {/* Soft, opposing, larger glows */}
-        <div className="absolute -top-[150px] -left-[250px] h-[800px] w-[800px] rounded-full bg-primary/10 blur-[180px] z-10" />
-        <div className="absolute -bottom-[250px] -right-[150px] h-[700px] w-[700px] rounded-full bg-indigo-300/5 blur-[160px] z-10" />
+      {/* Light Mode Dynamic Layer: 
+        Base of pristine white with slow,vast, shifting electric cyan and indogo diffused lights.
+        Uses cross-fading (transition-opacity) for invisible dynamic effect.
+      */}
+      <div className={`absolute inset-0 z-10 transition-opacity duration-1000 ${isDark ? "opacity-0" : "opacity-100"}`}>
+        <div className="absolute top-[100px] left-[150px] h-[700px] w-[700px] rounded-full bg-primary/10 blur-[160px] animate-cosmic-drift z-10" />
+        <div className="absolute -bottom-[200px] right-[100px] h-[600px] w-[600px] rounded-full bg-indigo-500/5 blur-[140px] animate-cosmic-drift z-10" style={{ animationDelay: '2s' }} />
       </div>
 
-      {/* Dark Mode specific Layer */}
-      <div className={`absolute inset-0 z-20 transition-opacity duration-500 ${isDark ? "opacity-100" : "opacity-0"}`}>
-        {/* Enhanced, deeper, opposing large glows with richer colors and animation */}
-        <div className="absolute -top-[80px] -left-[150px] h-[900px] w-[900px] rounded-full bg-primary/25 blur-[200px] opacity-90 animate-subtle-glow z-20" />
-        <div className="absolute -bottom-[180px] -right-[80px] h-[800px] w-[800px] rounded-full bg-purple-500/20 blur-[180px] opacity-80 animate-subtle-glow z-20" style={{ animationDelay: '1.5s' }} />
+      {/* Dark Mode Dynamic Layer: 
+        Base of deep slate-black with deeper, richer, slowly pulsating cyan and purple nebulae.
+        These are vast, diffused light sources that "breathe".
+      */}
+      <div className={`absolute inset-0 z-20 transition-opacity duration-1000 ${isDark ? "opacity-100" : "opacity-0"}`}>
+        <div className="absolute top-[80px] left-[120px] h-[800px] w-[800px] rounded-full bg-primary/25 blur-[180px] animate-cosmic-drift z-20" />
+        <div className="absolute bottom-[150px] right-[80px] h-[700px] w-[700px] rounded-full bg-purple-600/20 blur-[160px] animate-cosmic-drift z-20" style={{ animationDelay: '1.5s' }} />
       </div>
+
+      {/* Engineering grid and topographical pattern layered on top */}
+      <div className="absolute inset-0 ai-grid-pattern opacity-10 dark:opacity-20 transition-opacity duration-500" />
     </div>
   )
 }
