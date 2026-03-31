@@ -12,10 +12,13 @@ export function ProjectCard({
     <article 
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      /* CHANGED: bg-[#0A0F1C]/60 -> bg-card | border-white/5 -> border-border | added text-card-foreground */
-      className="group relative flex flex-col h-full rounded-2xl border border-border bg-card/60 backdrop-blur-md transition-all duration-500 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5 text-card-foreground"
+      // Updated: Uses bg-card/40 with heavy backdrop blur to let LlmBackground show through
+      className="group relative flex flex-col h-full rounded-2xl border border-border bg-card/40 backdrop-blur-xl transition-all duration-500 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5 text-card-foreground overflow-hidden"
     >
-      <div className="relative p-6 md:p-8 flex flex-col h-full space-y-5">
+      {/* Interactive Hover Gradient */}
+      <div className={`absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : ''}`} />
+
+      <div className="relative p-6 md:p-8 flex flex-col h-full space-y-5 z-10">
         {/* Header */}
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-4">
@@ -23,7 +26,6 @@ export function ProjectCard({
               <Brain className="h-5 w-5 md:h-6 md:w-6 text-primary" />
             </div>
             <div>
-              {/* CHANGED: text-white -> text-foreground (or keep text-card-foreground inheritance) */}
               <h3 className="text-lg md:text-xl font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
                 {title}
               </h3>
@@ -36,31 +38,37 @@ export function ProjectCard({
           <ArrowUpRight className={`h-5 w-5 text-muted-foreground transition-all duration-300 ${isHovered ? 'translate-x-1 -translate-y-1 text-primary' : ''}`} />
         </div>
 
-        {/* Overview */}
-        {/* CHANGED: text-slate-400 -> text-muted-foreground */}
+        {/* Overview - Uses muted-foreground for professional contrast */}
         <p className="text-muted-foreground text-sm leading-relaxed flex-grow line-clamp-3">
           {overview}
         </p>
 
-        {/* Tags */}
+        {/* Tags - Uses secondary colors for clean look */}
         <div className="flex flex-wrap gap-2">
           {tags.slice(0, 3).map((tag: string) => (
-            /* CHANGED: bg-white/5 -> bg-secondary | border-white/10 -> border-border | text-slate-300 -> text-secondary-foreground */
-            <span key={tag} className="px-2.5 py-1 text-[10px] font-medium bg-secondary border border-border rounded-full text-secondary-foreground">
+            <span key={tag} className="px-2.5 py-1 text-[10px] font-medium bg-secondary/50 border border-border rounded-full text-secondary-foreground backdrop-blur-sm">
               {tag}
             </span>
           ))}
         </div>
 
         {/* Action Buttons */}
-        {/* CHANGED: border-white/5 -> border-border */}
-        <div className="flex gap-3 pt-5 border-t border-border">
-          {/* CHANGED: bg-white/5 -> bg-secondary | border-white/10 -> border-border | text-xs -> text-secondary-foreground */}
-          <a href={githubUrl} target="_blank" className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-secondary border border-border text-xs font-medium text-secondary-foreground hover:bg-secondary/80 transition-all">
+        <div className="flex gap-3 pt-5 border-t border-border/50">
+          <a 
+            href={githubUrl} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-secondary border border-border text-xs font-medium text-secondary-foreground hover:bg-secondary/80 transition-all active:scale-95"
+          >
             <Github className="h-4 w-4" /> Source
           </a>
-          {/* View Model Button usually stays Primary color for brand consistency */}
-          <a href={liveUrl} target="_blank" className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-primary text-primary-foreground text-xs font-bold hover:bg-primary/90 transition-all">
+          
+          <a 
+            href={liveUrl} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-primary text-primary-foreground text-xs font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 hover:shadow-primary/30 transition-all active:scale-95"
+          >
             <ExternalLink className="h-4 w-4" /> View Model
           </a>
         </div>
