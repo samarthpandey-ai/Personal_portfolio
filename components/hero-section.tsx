@@ -169,14 +169,14 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Right Side: Instant Theme-Aware Avatar */}
+          {/* Right Side: Fixed Avatar Frame without Unwanted Shadows */}
           <div className="relative mx-auto lg:mx-0">
             <div className="relative aspect-square w-80 sm:w-96 lg:w-[420px]">
               <div className="absolute -inset-4 rounded-3xl border border-primary/10 animate-pulse-glow" />
               
+              {/* REMOVED: glow-primary-soft to eliminate the shadow over the avatar area */}
               <div className="absolute inset-0 rounded-2xl border border-border bg-card overflow-hidden shadow-2xl transition-all duration-500 flex items-center justify-center p-4">
                 <div className="relative h-full w-full">
-                  {/* DARK AVATAR - Stays in DOM, toggles opacity */}
                   <Image 
                     src="/avatar-dark.png"
                     alt="Dark Theme Avatar"
@@ -186,7 +186,6 @@ export function HeroSection() {
                     }`}
                     priority
                   />
-                  {/* LIGHT AVATAR - Stays in DOM, toggles opacity */}
                   <Image 
                     src="/avatar-light.png"
                     alt="Light Theme Avatar"
@@ -202,7 +201,8 @@ export function HeroSection() {
                 <div className="absolute top-0 right-0 h-40 w-40 bg-gradient-to-bl from-primary/10 via-primary/5 to-transparent" />
               </div>
 
-              <div className="absolute -top-6 -right-6 rounded-2xl border border-primary/40 bg-card px-5 py-4 shadow-xl glow-primary-soft">
+              {/* Status Badge - Now floating cleanly without container shadow interference */}
+              <div className="absolute -top-6 -right-6 rounded-2xl border border-primary/40 bg-card px-5 py-4 shadow-xl">
                 <div className="text-center">
                   <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Status</p>
                   <p className="text-lg font-bold text-primary flex items-center gap-2 justify-center">
