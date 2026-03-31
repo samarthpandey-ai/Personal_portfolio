@@ -10,6 +10,7 @@ import Image from "next/image"
 import { useEffect, useState } from "react"
 import { useTheme } from "next-themes"
 import { StatusBadge } from "./status-badge"
+import { LlmBackground } from "./llm-background"
 
 const roles = [
   "Neural Architectures",
@@ -60,13 +61,11 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-background transition-colors duration-500">
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 -left-32 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-primary/20 via-primary/5 to-transparent blur-[120px] animate-neural-pulse opacity-60 dark:opacity-100" />
-        <div className="absolute bottom-1/4 -right-32 h-[500px] w-[500px] rounded-full bg-gradient-to-tl from-purple-500/15 via-primary/5 to-transparent blur-[100px] animate-neural-pulse opacity-50 dark:opacity-100" style={{ animationDelay: '1.5s' }} />
-        <div className="absolute inset-0 ai-grid-pattern [mask-image:radial-gradient(ellipse_80%_60%_at_50%_20%,#000_30%,transparent_100%)] opacity-20 dark:opacity-100" />
-      </div>
       
-      <div className="relative mx-auto max-w-7xl px-6 py-28 md:py-36 lg:py-44">
+      {/* Replaced old static glows and grids with the new dynamic background component */}
+      <LlmBackground />
+      
+      <div className="relative mx-auto max-w-7xl px-6 py-28 md:py-36 lg:py-44 z-10">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-20 items-center">
           <div className="space-y-10">
             <div className="inline-flex items-center gap-3 rounded-full border border-primary/40 bg-primary/10 px-5 py-2.5 text-sm font-medium text-primary backdrop-blur-sm">
