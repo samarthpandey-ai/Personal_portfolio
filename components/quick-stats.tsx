@@ -47,10 +47,6 @@ function AnimatedCounter({ value }: { value: number }) {
     return () => observer.disconnect()
   }, [value, hasAnimated])
 
-  useEffect(() => {
-    if (hasAnimated) setCount(value)
-  }, [value, hasAnimated])
-
   return <span ref={ref}>{count.toLocaleString()}</span>
 }
 
@@ -60,6 +56,7 @@ export function QuickStats() {
     leetcode: 69
   })
 
+  // Sort projects by date once to get the most recent ones
   const latestTwo = useMemo(() => {
     return [...myProjects]
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -67,29 +64,38 @@ export function QuickStats() {
   }, []);
 
   useEffect(() => {
+    let isMounted = true;
+
     async function getLiveStats() {
       try {
+        // Fetch GitHub Events
         const ghRes = await fetch('https://api.github.com/users/samarthpandey-ai/events')
         if (ghRes.ok) {
           const ghData = await ghRes.json()
           const recentCommits = ghData
             .filter((e: any) => e.type === "PushEvent")
             .reduce((acc: number, e: any) => acc + (e.payload?.commits?.length || 0), 0)
-          setDynamicStats(prev => ({ ...prev, github: 1247 + recentCommits }))
+          
+          if (isMounted) {
+            setDynamicStats(prev => ({ ...prev, github: 1247 + recentCommits }))
+          }
         }
 
+        // Fetch LeetCode Stats
         const lcRes = await fetch('https://leetcode-stats-api.herokuapp.com/samp123')
         if (lcRes.ok) {
           const lcData = await lcRes.json()
-          if (lcData.totalSolved) {
+          if (lcData.totalSolved && isMounted) {
             setDynamicStats(prev => ({ ...prev, leetcode: lcData.totalSolved }))
           }
         }
       } catch (error) {
-        console.error("Live fetch failed")
+        console.error("Live fetch failed:", error)
       }
     }
+
     getLiveStats()
+    return () => { isMounted = false }; // Cleanup to prevent state updates on unmounted component
   }, [])
 
   const statsList = [
@@ -120,9 +126,6 @@ export function QuickStats() {
   ]
 
   return (
-    /* STRATEGIC UPDATE: Added a very subtle frosted band (bg-muted/20) and 
-       backdrop-blur to create hierarchy while keeping the background orbs visible.
-    */
     <section className="relative overflow-hidden py-24 border-y border-border/20 bg-muted/20 backdrop-blur-[2px]">
       <div className="relative mx-auto max-w-7xl px-6">
         <div className="mb-16 text-center">
@@ -139,7 +142,7 @@ export function QuickStats() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {statsList.map((stat, index) => (
             <div key={index} className="group relative overflow-hidden rounded-2xl border border-border bg-card/40 backdrop-blur-md p-6 transition-all hover:border-primary/40 shadow-sm">
-              <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity`} />
+              <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
               <stat.icon className="h-6 w-6 text-primary mb-4 relative z-10" />
               <div className="relative space-y-1 z-10">
                 <p className={`text-3xl font-bold bg-gradient-to-br ${stat.gradient} bg-clip-text text-transparent`}>
