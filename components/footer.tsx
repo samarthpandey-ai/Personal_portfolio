@@ -26,11 +26,12 @@ const quickLinks = [
 
 export function Footer() {
   return (
-    // UPDATED: Removed bg-card and added bg-transparent to let the background orbs flow through
-    <footer className="relative border-t border-border/40 bg-transparent transition-colors duration-500">
+    /* STRATEGIC UPDATE: Added bg-muted/30 and backdrop-blur-md to create a professional 
+       visual anchor at the bottom of the page, as suggested in the design feedback. */
+    <footer className="relative border-t border-border/40 bg-muted/30 backdrop-blur-md transition-colors duration-500">
       
-      {/* Subtle radial glow to make the footer text readable without blocking the background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background/50 pointer-events-none" />
+      {/* Subtle top-to-bottom gradient for added depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/20 pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-6 py-16 md:py-20 z-10">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
@@ -51,7 +52,6 @@ export function Footer() {
               Engineering intelligent AI systems at the intersection of deep learning and NLP.
             </p>
             
-            {/* Social Links */}
             <div className="flex items-center gap-2">
               {socialLinks.map((link) => (
                 <a
@@ -59,7 +59,7 @@ export function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card/30 text-muted-foreground transition-all hover:border-primary/50 hover:bg-primary hover:text-primary-foreground hover:-translate-y-1"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card/50 text-muted-foreground transition-all hover:border-primary/50 hover:bg-primary hover:text-primary-foreground hover:-translate-y-1"
                   aria-label={link.label}
                 >
                   <link.icon className="h-4 w-4" />
@@ -120,7 +120,7 @@ export function Footer() {
               <input
                 type="email"
                 placeholder="your@email.com"
-                className="w-full rounded-xl border border-border/60 bg-card/20 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/20 backdrop-blur-sm transition-all"
+                className="w-full rounded-xl border border-border/60 bg-card/30 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/20 backdrop-blur-sm transition-all"
               />
               <button className="w-full rounded-xl bg-primary px-5 py-3 text-sm font-bold text-primary-foreground transition-all hover:shadow-lg hover:shadow-primary/20 active:scale-[0.98]">
                 Join Newsletter
@@ -129,7 +129,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-border/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <p className="text-xs text-muted-foreground flex items-center gap-1.5">
             Designed & Developed with <Heart className="h-3 w-3 text-red-500 fill-red-500 animate-pulse" /> by Samarth Pandey
