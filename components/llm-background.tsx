@@ -11,52 +11,51 @@ export function LlmBackground() {
     setMounted(true)
   }, [])
 
-  if (!mounted) {
-    return null
-  }
+  if (!mounted) return null
 
   const isDark = resolvedTheme === "dark"
 
   return (
     <>
-      {/* Custom Keyframes for a smooth, dynamic floating effect */}
       <style>{`
-        @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
-          33% { transform: translate(50px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
+        @keyframes float {
+          0% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(30px, -30px) scale(1.05); }
+          100% { transform: translate(0, 0) scale(1); }
         }
-        .animate-blob {
-          animation: blob 15s infinite alternate ease-in-out;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        .animation-delay-4000 {
-          animation-delay: 4s;
+        .animate-float {
+          animation: float 20s infinite ease-in-out;
         }
       `}</style>
 
-      {/* FIXED container ensures it covers the entire screen, even when scrolling */}
-      <div className="fixed inset-0 -z-50 w-screen h-screen overflow-hidden bg-background transition-colors duration-500">
+      {/* Fixed ensures it stays behind everything during scroll */}
+      <div className="fixed inset-0 -z-50 h-screen w-screen bg-background overflow-hidden transition-colors duration-700">
         
-        {/* Subtle Engineering Grid - Always present */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)] z-0" />
-
-        {/* LIGHT MODE: Dynamic Floating Aurora */}
-        <div className={`absolute inset-0 z-10 transition-opacity duration-1000 ease-in-out ${isDark ? "opacity-0" : "opacity-100"}`}>
-          <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-cyan-300/20 blur-[100px] animate-blob mix-blend-multiply" />
-          <div className="absolute top-[20%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-emerald-300/20 blur-[100px] animate-blob animation-delay-2000 mix-blend-multiply" />
-          <div className="absolute bottom-[-20%] left-[20%] w-[60vw] h-[60vw] rounded-full bg-blue-300/20 blur-[120px] animate-blob animation-delay-4000 mix-blend-multiply" />
+        {/* LIGHT MODE: Soft Cyan & Emerald Aurora */}
+        <div className={`absolute inset-0 transition-opacity duration-1000 ${isDark ? 'opacity-0' : 'opacity-100'}`}>
+          <div className="animate-float absolute -top-[10%] -left-[10%] h-[70vw] w-[70vw] rounded-full bg-cyan-200/20 blur-[120px]" />
+          <div className="animate-float absolute top-[20%] -right-[10%] h-[60vw] w-[60vw] rounded-full bg-emerald-200/15 blur-[100px]" style={{ animationDelay: '-5s' }} />
+          <div className="animate-float absolute -bottom-[10%] left-[15%] h-[50vw] w-[50vw] rounded-full bg-blue-200/20 blur-[120px]" style={{ animationDelay: '-10s' }} />
         </div>
 
-        {/* DARK MODE: Dynamic Deep Neural Nebulas */}
-        <div className={`absolute inset-0 z-10 transition-opacity duration-1000 ease-in-out ${isDark ? "opacity-100" : "opacity-0"}`}>
-          <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-cyan-600/20 blur-[120px] animate-blob mix-blend-screen" />
-          <div className="absolute top-[20%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-purple-600/20 blur-[120px] animate-blob animation-delay-2000 mix-blend-screen" />
-          <div className="absolute bottom-[-20%] left-[20%] w-[60vw] h-[60vw] rounded-full bg-blue-900/30 blur-[150px] animate-blob animation-delay-4000 mix-blend-screen" />
+        {/* DARK MODE: Deep Cyan & Purple Nebula */}
+        <div className={`absolute inset-0 transition-opacity duration-1000 ${isDark ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="animate-float absolute -top-[10%] -left-[10%] h-[70vw] w-[70vw] rounded-full bg-cyan-900/20 blur-[150px]" />
+          <div className="animate-float absolute top-[25%] -right-[10%] h-[60vw] w-[60vw] rounded-full bg-purple-900/20 blur-[130px]" style={{ animationDelay: '-5s' }} />
+          <div className="animate-float absolute -bottom-[10%] left-[20%] h-[50vw] w-[50vw] rounded-full bg-blue-900/30 blur-[150px]" style={{ animationDelay: '-10s' }} />
         </div>
+
+        {/* THE FIX: Professional Grid with Radial Fade */}
+        {/* This mask-image makes the grid disappear toward the edges */}
+        <div 
+          className="absolute inset-0 z-0 opacity-[0.15] dark:opacity-[0.2]" 
+          style={{
+            backgroundImage: `linear-gradient(to right, #808080 1px, transparent 1px), linear-gradient(to bottom, #808080 1px, transparent 1px)`,
+            backgroundSize: '40px 40px',
+            maskImage: 'radial-gradient(circle at center, black 30%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(circle at center, black 30%, transparent 80%)'
+          }} 
+        />
       </div>
     </>
   )
