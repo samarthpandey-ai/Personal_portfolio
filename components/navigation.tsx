@@ -3,12 +3,12 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Menu, X, Cpu, Network, ArrowRight } from "lucide-react"
+import { Menu, X, Network, Mail, ArrowRight } from "lucide-react"
 import { useState, useEffect } from "react"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 const navItems = [
-  { href: "/", label: "Home" },
+  { href: "/", label: "Home" }, 
   { href: "/projects", label: "Projects" },
   { href: "/certificates", label: "Certificates" },
   { href: "/about", label: "About" },
@@ -37,18 +37,19 @@ export function Navigation() {
       )}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        {/* Logo with AI branding */}
+        
+        {/* UPDATED: Logo with Samarth.ai branding */}
         <Link 
           href="/" 
-          className="group flex items-center gap-3 transition-all"
+          className="group flex items-center gap-3 transition-all hover:opacity-90"
         >
           <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-primary/5 border border-primary/40 transition-all group-hover:border-primary/60 group-hover:shadow-lg group-hover:shadow-primary/25">
-            <Cpu className="h-6 w-6 text-primary transition-transform group-hover:scale-110" />
+            <Network className="h-6 w-6 text-primary transition-transform group-hover:scale-110" />
             <div className="absolute inset-0 rounded-xl bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
           <div className="hidden sm:flex flex-col">
-            <span className="text-lg font-bold tracking-tight text-foreground leading-none">Neural</span>
-            <span className="text-sm font-medium tracking-tight text-primary leading-none">Portfolio</span>
+            <span className="text-lg font-bold tracking-tight text-foreground leading-none">Samarth</span>
+            <span className="text-sm font-bold tracking-tight text-primary leading-none">.ai</span>
           </div>
         </Link>
 
@@ -84,7 +85,7 @@ export function Navigation() {
             className="hidden md:inline-flex group relative items-center gap-2.5 rounded-xl bg-gradient-to-r from-primary to-cyan-400 px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition-all hover:shadow-xl hover:shadow-primary/40 hover:scale-[1.02] overflow-hidden"
           >
             <span className="relative z-10 flex items-center gap-2">
-              <Network className="h-4 w-4" />
+              <Mail className="h-4 w-4" /> {/* Swapped to Mail to avoid clashing with the new logo */}
               Let&apos;s Connect
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </span>
@@ -141,7 +142,7 @@ export function Navigation() {
               href="mailto:your@email.com"
               className="flex items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-primary to-cyan-400 px-6 py-4 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25"
             >
-              <Network className="h-4 w-4" />
+              <Mail className="h-4 w-4" /> {/* Swapped to Mail here as well */}
               Let&apos;s Connect
               <ArrowRight className="h-4 w-4" />
             </a>
