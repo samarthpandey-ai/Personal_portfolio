@@ -95,25 +95,28 @@ export function QuickStats() {
     }
 
     getLiveStats()
-    return () => { isMounted = false }; // Cleanup to prevent state updates on unmounted component
+    return () => { isMounted = false }; 
   }, [])
 
+  // ADDED the isLive flag and updated subtitles here
   const statsList = [
     {
       title: "GitHub Commits",
       value: dynamicStats.github,
-      subtitle: "Live contributions",
+      subtitle: "Live API Fetch",
       icon: GitBranch,
       gradient: "from-primary to-cyan-400",
       bgGradient: "from-primary/15 to-cyan-400/5",
+      isLive: true,
     },
     {
       title: "LeetCode Solved",
       value: dynamicStats.leetcode,
-      subtitle: "Live DSA Progress",
+      subtitle: "Live API Fetch",
       icon: Code2,
       gradient: "from-orange-400 to-red-500",
       bgGradient: "from-orange-500/15 to-red-500/5",
+      isLive: true,
     },
     {
       title: "PROJECTS BUILT",
@@ -122,6 +125,7 @@ export function QuickStats() {
       icon: Brain,
       gradient: "from-violet-400 to-purple-500",
       bgGradient: "from-violet-500/15 to-purple-500/5",
+      isLive: false,
     }
   ]
 
@@ -144,13 +148,27 @@ export function QuickStats() {
             <div key={index} className="group relative overflow-hidden rounded-2xl border border-border bg-card/40 backdrop-blur-md p-6 transition-all hover:border-primary/40 shadow-sm">
               <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
               <stat.icon className="h-6 w-6 text-primary mb-4 relative z-10" />
+              
+              {/* UPDATED: The Live Indicator logic goes right here */}
               <div className="relative space-y-1 z-10">
                 <p className={`text-3xl font-bold bg-gradient-to-br ${stat.gradient} bg-clip-text text-transparent`}>
                   <AnimatedCounter value={stat.value} />+
                 </p>
                 <p className="text-sm font-semibold text-card-foreground">{stat.title}</p>
-                <p className="text-xs text-muted-foreground">{stat.subtitle}</p>
+                
+                <div className="flex items-center gap-1.5 pt-1">
+                  {stat.isLive && (
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                  )}
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                    {stat.subtitle}
+                  </p>
+                </div>
               </div>
+
             </div>
           ))}
         </div>
