@@ -120,11 +120,13 @@ export function QuickStats() {
   ]
 
   return (
-    // UPDATED: Changed bg-background to bg-transparent to show the LlmBackground
-    <section className="relative overflow-hidden bg-transparent">
-      <div className="relative mx-auto max-w-7xl px-6 py-24">
+    /* STRATEGIC UPDATE: Added a very subtle frosted band (bg-muted/20) and 
+       backdrop-blur to create hierarchy while keeping the background orbs visible.
+    */
+    <section className="relative overflow-hidden py-24 border-y border-border/20 bg-muted/20 backdrop-blur-[2px]">
+      <div className="relative mx-auto max-w-7xl px-6">
         <div className="mb-16 text-center">
-          <div className="inline-flex items-center gap-3 rounded-full border border-primary/40 bg-primary/10 px-6 py-3 text-sm font-medium text-primary mb-8">
+          <div className="inline-flex items-center gap-3 rounded-full border border-primary/40 bg-primary/10 px-6 py-3 text-sm font-medium text-primary mb-8 backdrop-blur-sm">
             <TrendingUp className="h-4 w-4" />
             Performance Metrics
             <Cpu className="h-4 w-4" />
@@ -136,7 +138,7 @@ export function QuickStats() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {statsList.map((stat, index) => (
-            <div key={index} className="group relative overflow-hidden rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-6 transition-all hover:border-primary/40 shadow-sm">
+            <div key={index} className="group relative overflow-hidden rounded-2xl border border-border bg-card/40 backdrop-blur-md p-6 transition-all hover:border-primary/40 shadow-sm">
               <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity`} />
               <stat.icon className="h-6 w-6 text-primary mb-4 relative z-10" />
               <div className="relative space-y-1 z-10">
@@ -153,7 +155,7 @@ export function QuickStats() {
         <div className="mt-24 space-y-10">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/30">
+              <div className="h-10 w-10 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/30 backdrop-blur-sm">
                 <Sparkles className="h-5 w-5 text-primary" />
               </div>
               <h3 className="text-3xl font-bold tracking-tight text-foreground">
