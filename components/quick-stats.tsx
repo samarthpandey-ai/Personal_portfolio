@@ -12,14 +12,9 @@ import {
 } from "lucide-react"
 import { useEffect, useState, useRef, useMemo } from "react"
 import Link from "next/link"
-// Import your central project configuration
 import { myProjects } from "@/lib/project-config"
-// Import the ProjectCard component to reuse the high-end UI
 import { ProjectCard } from "./project-card"
 
-/**
- * AnimatedCounter: Handles the professional "rolling number" effect
- */
 function AnimatedCounter({ value }: { value: number }) {
   const [count, setCount] = useState(0)
   const [hasAnimated, setHasAnimated] = useState(false)
@@ -65,7 +60,7 @@ export function QuickStats() {
     leetcode: 69
   })
 
-  // Logic to pick the 2 most recent projects for the Home Page
+  // FIXED: Corrected the Date comparison logic
   const latestTwo = useMemo(() => {
     return [...myProjects]
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -126,9 +121,8 @@ export function QuickStats() {
   ]
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden bg-background">
       <div className="relative mx-auto max-w-7xl px-6 py-24">
-        {/* Header Section */}
         <div className="mb-16 text-center">
           <div className="inline-flex items-center gap-3 rounded-full border border-primary/40 bg-primary/10 px-6 py-3 text-sm font-medium text-primary mb-8">
             <TrendingUp className="h-4 w-4" />
@@ -140,31 +134,29 @@ export function QuickStats() {
           </h2>
         </div>
 
-        {/* 3-Column Stats Grid */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {statsList.map((stat, index) => (
-            <div key={index} className="group relative overflow-hidden rounded-2xl border border-white/5 bg-[#0A0F1C]/60 p-6 transition-all hover:border-primary/40">
+            <div key={index} className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/40 shadow-sm">
               <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity`} />
-              <stat.icon className="h-6 w-6 text-primary mb-4" />
-              <div className="relative space-y-1">
+              <stat.icon className="h-6 w-6 text-primary mb-4 relative z-10" />
+              <div className="relative space-y-1 z-10">
                 <p className={`text-3xl font-bold bg-gradient-to-br ${stat.gradient} bg-clip-text text-transparent`}>
                   <AnimatedCounter value={stat.value} />+
                 </p>
-                <p className="text-sm font-semibold text-white">{stat.title}</p>
-                <p className="text-xs text-slate-400">{stat.subtitle}</p>
+                <p className="text-sm font-semibold text-card-foreground">{stat.title}</p>
+                <p className="text-xs text-muted-foreground">{stat.subtitle}</p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* REPLACED: "AI Research Focus" & "2027 Roadmap" with Latest Projects */}
         <div className="mt-24 space-y-10">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/30">
                 <Sparkles className="h-5 w-5 text-primary" />
               </div>
-              <h3 className="text-3xl font-bold tracking-tight text-white">
+              <h3 className="text-3xl font-bold tracking-tight text-foreground">
                 Latest <span className="text-gradient">Innovations</span>
               </h3>
             </div>
@@ -178,17 +170,6 @@ export function QuickStats() {
               <ProjectCard key={index} {...project} />
             ))}
           </div>
-        </div>
-
-        {/* Footer Link */}
-        <div className="mt-16 text-center">
-          <Link
-            href="/about"
-            className="group inline-flex items-center gap-3 text-sm font-medium text-slate-400 hover:text-primary transition-colors"
-          >
-            <span>Explore my complete journey</span>
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
         </div>
       </div>
     </section>
