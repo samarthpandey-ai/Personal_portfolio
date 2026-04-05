@@ -1,15 +1,16 @@
 import { NextResponse } from 'next/server';
 
-// These lines force Next.js to NEVER cache this API route locally or on Vercel
-export const dynamic = 'force-dynamic';
-export const fetchCache = 'force-no-store';
-
-export async function GET() {
+// Change to POST so Next.js literally cannot cache it
+export async function POST() {
   try {
-    // We bypass 3rd-party wrappers entirely and hit LeetCode directly via GraphQL
     const response = await fetch('https://leetcode.com/graphql', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        // Disguise the server as a normal Google Chrome browser to bypass LeetCode blocks
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+        'Referer': 'https://leetcode.com/samp123/'
+      },
       body: JSON.stringify({
         query: `
           query userProblemsSolved($username: String!) {
@@ -29,22 +30,28 @@ export async function GET() {
     });
 
     if (!response.ok) {
-      throw new Error(`LeetCode API error: ${response.status}`);
+      throw new Error(`LeetCode API block: ${response.status}`);
     }
 
     const data = await response.json();
+    
+    // Check if LeetCode sent back an error instead of data
+    if (data.errors) {
+       console.error("GraphQL Error:", data.errors);
+       throw new Error("GraphQL returned an error");
+    }
 
-    // Parse the official GraphQL response to get the total solved count
     const totalSolved = data?.data?.matchedUser?.submitStats?.acSubmissionNum?.find(
       (item: any) => item.difficulty === "All"
     )?.count;
 
-    if (totalSolved === undefined) {
-      console.error("Unexpected response shape:", data);
-      return NextResponse.json({ error: 'Could not parse count' }, { status: 500 });
-    }
-
     return NextResponse.json({ totalSolved });
+
+  } catch (error) {
+    console.error("Server-side LeetCode fetch error:", error);
+    return NextResponse.json({ error: 'Failed to fetch' }, { status: 500 });
+  }
+}
 
   } catch (error) {
     console.error("Server-side LeetCode fetch error:", error);
