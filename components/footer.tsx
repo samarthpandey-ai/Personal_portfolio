@@ -1,5 +1,5 @@
 "use client"
-
+import { ContactWidget } from "./contact-widget" // Adjust path if needed
 import { Github, Linkedin, Mail, Twitter, Cpu, Heart, ArrowUpRight, Network, Briefcase, Zap } from "lucide-react"
 import Link from "next/link"
 
@@ -132,13 +132,7 @@ export function Footer() {
               </div>
             </div>
 
-            <a 
-              href="mailto:your@email.com" 
-              className="group flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3.5 text-sm font-bold text-primary-foreground transition-all hover:shadow-lg hover:shadow-primary/20 active:scale-[0.98]"
-            >
-              <Zap className="h-4 w-4 transition-transform group-hover:scale-110" />
-              Let's Talk
-            </a>
+            <ContactWidget email="your.actual.email@gmail.com" label="Let's Talk" />
           </div>
         </div>
 
