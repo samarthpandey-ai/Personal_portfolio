@@ -10,7 +10,7 @@ interface ContactWidgetProps {
 }
 
 export function ContactWidget({ 
-  email = "your@email.com", // Replace with your actual email
+  email = "your.actual.email@gmail.com", // Make sure to replace this where you call it!
   label = "Let's Talk",
   className = "w-full py-3.5" // Default matches your footer style
 }: ContactWidgetProps) {
@@ -32,13 +32,15 @@ export function ContactWidget({
   if (isRevealed) {
     return (
       <div className={`flex items-center justify-between gap-3 rounded-xl border border-primary/30 bg-primary/5 px-4 ${className.includes('py-') ? className : 'py-2'} backdrop-blur-sm animate-in fade-in zoom-in-95 duration-300`}>
-        <span className="text-sm font-mono text-foreground tracking-tight truncate">
+        {/* Added select-all so double-clicking highlights the full email perfectly */}
+        <span className="text-sm font-mono text-foreground tracking-tight truncate select-all">
           {email}
         </span>
         <button
           onClick={handleCopy}
           className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-card border border-border transition-all hover:border-primary/50 hover:bg-primary/10 active:scale-90"
           title="Copy Email"
+          aria-label="Copy Email Address to clipboard"
         >
           {hasCopied ? (
             <Check className="h-4 w-4 text-emerald-500" />
