@@ -60,15 +60,15 @@ export function HeroSection() {
   }, [])
 
   return (
-    // REMOVED: overflow-hidden and bg-background to let the fixed dynamic background show through
-    <section className="relative min-h-screen w-full transition-colors duration-500">
+    <section className="relative min-h-screen w-full transition-colors duration-500 overflow-x-hidden">
       
       {/* The Dynamic Background Component */}
       <LlmBackground />
       
-      <div className="relative mx-auto max-w-7xl px-6 py-28 md:py-36 lg:py-44 z-10">
-        <div className="grid gap-16 lg:grid-cols-2 lg:gap-20 items-center">
-          <div className="space-y-10">
+      {/* UPDATED: Reduced pt (padding-top) values to remove the gap */}
+      <div className="relative mx-auto max-w-7xl px-6 pt-16 pb-20 md:pt-24 md:pb-32 lg:pt-28 lg:pb-40 z-10">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 items-center">
+          <div className="space-y-8">
             <div className="inline-flex items-center gap-3 rounded-full border border-primary/40 bg-primary/10 px-5 py-2.5 text-sm font-medium text-primary backdrop-blur-sm shadow-sm">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
@@ -77,7 +77,7 @@ export function HeroSection() {
               Available for Research & Industry Roles
             </div>
 
-            <div className="space-y-8">
+            <div className="space-y-6">
               <div className="inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em] text-primary/80">
                 <Cpu className="h-4 w-4" />
                 <span className="h-px w-6 bg-primary/40" />
