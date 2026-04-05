@@ -81,7 +81,7 @@ export function QuickStats() {
           }
         }
 
-        // 2. UPDATED: Call Internal API Route to bypass CORS and get real-time LeetCode stats
+        // 2. Call Internal API Route to bypass CORS and get real-time LeetCode stats
         const lcRes = await fetch(`/api/leetcode?t=${Date.now()}`, {
           cache: 'no-store'
         });
