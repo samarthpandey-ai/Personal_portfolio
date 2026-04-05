@@ -1,13 +1,14 @@
 "use client"
-import { ContactWidget } from "./contact-widget" // Adjust path if needed
+
 import { Github, Linkedin, Mail, Twitter, Cpu, Heart, ArrowUpRight, Network, Briefcase, Zap } from "lucide-react"
 import Link from "next/link"
+import { ContactWidget } from "./contact-widget"
 
 const socialLinks = [
   { href: "https://github.com/samarthpandey-ai", icon: Github, label: "GitHub" },
   { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
   { href: "https://twitter.com", icon: Twitter, label: "Twitter" },
-  { href: "mailto:your@email.com", icon: Mail, label: "Email" },
+  { href: "mailto:your.actual.email@gmail.com", icon: Mail, label: "Email" },
 ]
 
 const navLinks = [
@@ -18,7 +19,12 @@ const navLinks = [
 ]
 
 const quickLinks = [
-  { href: "#", label: "Resume" },
+  { 
+    // UPDATE THIS: Use the exact filename of the PDF in your 'public' folder
+    // For example: "/Samarth_Pandey_Resume.pdf"
+    href: "/Samarth_Pandey_Resume.pdf", 
+    label: "Resume" 
+  },
   { href: "https://leetcode.com/samp123", label: "LeetCode" },
   { href: "#", label: "Google Scholar" },
   { href: "#", label: "HuggingFace" },
@@ -27,8 +33,6 @@ const quickLinks = [
 export function Footer() {
   return (
     <footer className="relative border-t border-border/40 bg-muted/30 backdrop-blur-md transition-colors duration-500">
-      
-      {/* Subtle top-to-bottom gradient for added depth */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/20 pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-6 py-16 md:py-20 z-10">
@@ -86,7 +90,7 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Quick Links Column */}
+          {/* Quick Links Column - UPDATED FOR RESUME */}
           <div className="space-y-6">
             <h3 className="text-xs font-bold text-foreground uppercase tracking-[0.2em] flex items-center gap-2">
               <Cpu className="h-3 w-3 text-primary" />
@@ -108,7 +112,7 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* REPLACED: Availability & Status Column */}
+          {/* Availability Column */}
           <div className="space-y-5">
             <h3 className="text-xs font-bold text-foreground uppercase tracking-[0.2em] flex items-center gap-2">
               <Briefcase className="h-3 w-3 text-primary" />
@@ -126,13 +130,16 @@ export function Footer() {
                     Seeking Summer 2026 Internships
                   </p>
                   <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">
-                    Currently in my 6th semester of B.Tech. Open to ML, Deep Learning, and NLP roles.
+                    Currently in 6th sem of B.Tech. Open to ML & NLP roles.
                   </p>
                 </div>
               </div>
             </div>
 
-            <ContactWidget email="your.actual.email@gmail.com" label="Let's Talk" />
+            <ContactWidget 
+              email="your.actual.email@gmail.com" 
+              label="Let's Talk" 
+            />
           </div>
         </div>
 
