@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 import { Menu, X, Network, Mail, ArrowRight } from "lucide-react"
 import { useState, useEffect } from "react"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { ContactWidget } from "./contact-widget" // <-- Imported the new widget
+import { ContactWidget } from "./contact-widget"
 
 const navItems = [
   { href: "/", label: "Home" }, 
@@ -39,7 +39,7 @@ export function Navigation() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         
-        {/* Logo with Samarth.ai branding */}
+        {/* Logo Section */}
         <Link 
           href="/" 
           className="group flex items-center gap-3 transition-all hover:opacity-90"
@@ -54,7 +54,7 @@ export function Navigation() {
           </div>
         </Link>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation Links */}
         <div className="hidden items-center md:flex">
           <div className="flex items-center gap-1 rounded-2xl border border-border/50 bg-card/40 backdrop-blur-sm p-1.5">
             {navItems.map((item) => (
@@ -74,20 +74,18 @@ export function Navigation() {
           </div>
         </div>
 
-        {/* Right Side Controls (Toggle + CTA + Mobile Menu) */}
+        {/* Action Controls */}
         <div className="flex items-center gap-3 md:gap-4">
-          
-          {/* Theme Toggle - Visible on both Mobile and Desktop */}
           <ThemeToggle />
 
-          {/* REPLACED: Desktop CTA Button now uses ContactWidget */}
+          {/* Desktop Widget */}
           <ContactWidget 
-            email="your.actual.email@gmail.com" // <-- DON'T FORGET TO CHANGE THIS
+            email="samarth.ai.official@gmail.com" // Update this
             label="Let's Connect" 
             className="hidden md:flex w-auto py-2.5 px-6 text-sm" 
           />
 
-          {/* Mobile Menu Button - Visible on Mobile, Hidden on Desktop */}
+          {/* Mobile Menu Trigger */}
           <button
             className={cn(
               "flex h-12 w-12 items-center justify-center rounded-xl border transition-all md:hidden",
@@ -100,11 +98,10 @@ export function Navigation() {
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
-
         </div>
       </nav>
 
-      {/* Mobile Navigation Dropdown */}
+      {/* Mobile Menu Dropdown */}
       <div 
         className={cn(
           "md:hidden overflow-hidden transition-all duration-400 ease-out",
@@ -133,9 +130,9 @@ export function Navigation() {
           ))}
           
           <div className="pt-4 border-t border-border/40">
-            {/* REPLACED: Mobile CTA Button now uses ContactWidget */}
+            {/* Mobile Widget */}
             <ContactWidget 
-              email="your.actual.email@gmail.com" // <-- DON'T FORGET TO CHANGE THIS
+              email="samarth.ai.official@gmail.com" // Update this
               label="Let's Connect" 
               className="flex w-full py-4 text-sm" 
             />
