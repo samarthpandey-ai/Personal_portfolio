@@ -53,7 +53,7 @@ function AnimatedCounter({ value }: { value: number }) {
 export function QuickStats() {
   const [dynamicStats, setDynamicStats] = useState({
     github: 1247, 
-    leetcode: 69 // Default fallback
+    leetcode: 73 // Set the absolute minimum floor here
   })
 
   const latestTwo = useMemo(() => {
@@ -66,7 +66,7 @@ export function QuickStats() {
     let isMounted = true;
     async function getLiveStats() {
       try {
-        // 1. Fetch GitHub with Cache Busting
+        // 1. Fetch GitHub
         const ghRes = await fetch(`https://api.github.com/users/samarthpandey-ai/events?t=${Date.now()}`, {
           cache: 'no-store'
         })
@@ -81,17 +81,36 @@ export function QuickStats() {
           }
         }
 
-        // 2. Call Internal API Route to bypass CORS and get real-time LeetCode stats
-        const lcRes = await fetch(`/api/leetcode?t=${Date.now()}`, {
-          cache: 'no-store'
-        });
+        // 2. THE SMART LEETCODE FETCH
+        let actualSolved = 73; // Our baseline floor truth
 
-        if (lcRes.ok) {
-          const data = await lcRes.json();
-          if (isMounted && data.totalSolved) {
-            setDynamicStats(prev => ({ ...prev, leetcode: data.totalSolved }));
+        try {
+          // Attempt A: Faisal's API (Bypasses Alfa's strict limits)
+          const resA = await fetch('https://leetcode-api-faisalshohag.vercel.app/samp123', { cache: 'no-store' });
+          if (resA.ok) {
+            const dataA = await resA.json();
+            // Only accept the data if it is GREATER than our known floor
+            if (dataA?.totalSolved > actualSolved) {
+              actualSolved = dataA.totalSolved;
+            }
+          } else {
+            // Attempt B: Alfa API Fallback
+            const resB = await fetch('https://alfa-leetcode-api.onrender.com/samp123/solved', { cache: 'no-store' });
+            if (resB.ok) {
+              const dataB = await resB.json();
+              if (dataB?.solvedProblem > actualSolved) {
+                actualSolved = dataB.solvedProblem;
+              }
+            }
           }
+        } catch (error) {
+          console.error("Proxy fetch failed, maintaining floor value.", error);
         }
+
+        if (isMounted) {
+          setDynamicStats(prev => ({ ...prev, leetcode: actualSolved }));
+        }
+
       } catch (error) {
         console.error("Live fetch failed:", error)
       }
