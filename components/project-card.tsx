@@ -1,34 +1,50 @@
 "use client"
 
-import { Github, ExternalLink, Brain, Sparkles, ArrowUpRight } from "lucide-react"
+import { Github, ExternalLink, Brain, Sparkles, ArrowUpRight, Award } from "lucide-react"
 import { useState } from "react"
+// Import your featured list
+import { featuredProjectTitles } from "@/lib/project-config"
 
 export function ProjectCard({ 
   title, overview, model, tags, githubUrl, liveUrl 
 }: any) {
   const [isHovered, setIsHovered] = useState(false)
+  
+  // The system checks if this card's title is in your featured list
+  const isFeatured = featuredProjectTitles.includes(title)
 
   return (
     <article 
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      // UPDATED: Added hover:-translate-y-2, hover:scale-[1.01], and custom cyan-glow shadow
       className={`
-        group relative flex flex-col h-full rounded-2xl border border-border 
-        bg-card/40 backdrop-blur-xl transition-all duration-500 ease-out
+        group relative flex flex-col h-full rounded-2xl border 
+        ${isFeatured ? 'border-primary/30 bg-card/60' : 'border-border bg-card/40'} 
+        backdrop-blur-xl transition-all duration-500 ease-out
         hover:border-primary/40 hover:-translate-y-2 hover:scale-[1.01]
-        ${isHovered ? 'shadow-2xl shadow-primary/10 border-primary/30' : 'shadow-sm'}
+        ${isHovered ? 'shadow-2xl shadow-primary/10' : 'shadow-sm'}
         text-card-foreground overflow-hidden
       `}
     >
+      {/* THE FEATURED BADGE */}
+      {isFeatured && (
+        <div className="absolute top-4 right-4 z-20 animate-fade-in">
+          <div className="flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-primary backdrop-blur-md shadow-[0_0_15px_rgba(45,212,191,0.2)]">
+            <Award className="h-3.5 w-3.5" />
+            Featured
+          </div>
+        </div>
+      )}
+
       {/* Interactive Hover Gradient */}
       <div className={`absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : ''}`} />
 
       <div className="relative p-6 md:p-8 flex flex-col h-full space-y-5 z-10">
-        {/* Header */}
-        <div className="flex items-start justify-between">
+        
+        {/* Header - Adjusted padding to make room for the badge if featured */}
+        <div className={`flex items-start justify-between ${isFeatured ? 'pr-20' : ''}`}>
           <div className="flex items-center gap-4">
-            <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 transition-all duration-500 group-hover:bg-primary/20 group-hover:scale-110">
+            <div className={`flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl transition-all duration-500 group-hover:scale-110 ${isFeatured ? 'bg-primary/20 border-primary/40' : 'bg-primary/10 border-primary/20 group-hover:bg-primary/20'}`}>
               <Brain className="h-5 w-5 md:h-6 md:w-6 text-primary" />
             </div>
             <div>
@@ -41,7 +57,9 @@ export function ProjectCard({
               </p>
             </div>
           </div>
-          <ArrowUpRight className={`h-5 w-5 text-muted-foreground transition-all duration-500 ${isHovered ? 'translate-x-1 -translate-y-1 text-primary' : ''}`} />
+          {!isFeatured && (
+            <ArrowUpRight className={`h-5 w-5 text-muted-foreground transition-all duration-500 ${isHovered ? 'translate-x-1 -translate-y-1 text-primary' : ''}`} />
+          )}
         </div>
 
         {/* Overview */}
@@ -68,7 +86,6 @@ export function ProjectCard({
           >
             <Github className="h-4 w-4" /> Source
           </a>
-          
           <a 
             href={liveUrl} 
             target="_blank" 
