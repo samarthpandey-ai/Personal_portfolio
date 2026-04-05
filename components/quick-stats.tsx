@@ -56,7 +56,6 @@ export function QuickStats() {
     leetcode: 69
   })
 
-  // Sort projects by date once to get the most recent ones
   const latestTwo = useMemo(() => {
     return [...myProjects]
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -65,10 +64,8 @@ export function QuickStats() {
 
   useEffect(() => {
     let isMounted = true;
-
     async function getLiveStats() {
       try {
-        // Fetch GitHub Events
         const ghRes = await fetch('https://api.github.com/users/samarthpandey-ai/events')
         if (ghRes.ok) {
           const ghData = await ghRes.json()
@@ -81,7 +78,6 @@ export function QuickStats() {
           }
         }
 
-        // Fetch LeetCode Stats
         const lcRes = await fetch('https://leetcode-stats-api.herokuapp.com/samp123')
         if (lcRes.ok) {
           const lcData = await lcRes.json()
@@ -93,12 +89,10 @@ export function QuickStats() {
         console.error("Live fetch failed:", error)
       }
     }
-
     getLiveStats()
     return () => { isMounted = false }; 
   }, [])
 
-  // ADDED the isLive flag and updated subtitles here
   const statsList = [
     {
       title: "GitHub Commits",
@@ -106,7 +100,7 @@ export function QuickStats() {
       subtitle: "Live API Fetch",
       icon: GitBranch,
       gradient: "from-primary to-cyan-400",
-      bgGradient: "from-primary/15 to-cyan-400/5",
+      bgGradient: "from-primary/20 to-cyan-400/5",
       isLive: true,
     },
     {
@@ -115,7 +109,7 @@ export function QuickStats() {
       subtitle: "Live API Fetch",
       icon: Code2,
       gradient: "from-orange-400 to-red-500",
-      bgGradient: "from-orange-500/15 to-red-500/5",
+      bgGradient: "from-orange-500/20 to-red-500/5",
       isLive: true,
     },
     {
@@ -124,7 +118,7 @@ export function QuickStats() {
       subtitle: "Documented & Deployed",
       icon: Brain,
       gradient: "from-violet-400 to-purple-500",
-      bgGradient: "from-violet-500/15 to-purple-500/5",
+      bgGradient: "from-violet-500/20 to-purple-500/5",
       isLive: false,
     }
   ]
@@ -145,16 +139,19 @@ export function QuickStats() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {statsList.map((stat, index) => (
-            <div key={index} className="group relative overflow-hidden rounded-2xl border border-border bg-card/40 backdrop-blur-md p-6 transition-all hover:border-primary/40 shadow-sm">
+            // UPDATED: Added hover:-translate-y-1.5, hover:scale-[1.02], and shadow-lg
+            <div key={index} className="group relative overflow-hidden rounded-2xl border border-border bg-card/40 backdrop-blur-md p-6 transition-all duration-500 ease-out hover:border-primary/40 hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/5 shadow-sm cursor-default">
               <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-              <stat.icon className="h-6 w-6 text-primary mb-4 relative z-10" />
               
-              {/* UPDATED: The Live Indicator logic goes right here */}
+              <div className="relative h-10 w-10 mb-4 flex items-center justify-center rounded-xl bg-muted/50 group-hover:bg-primary/10 transition-colors duration-500 z-10">
+                <stat.icon className="h-6 w-6 text-muted-foreground group-hover:text-primary transition-colors duration-500" />
+              </div>
+              
               <div className="relative space-y-1 z-10">
                 <p className={`text-3xl font-bold bg-gradient-to-br ${stat.gradient} bg-clip-text text-transparent`}>
                   <AnimatedCounter value={stat.value} />+
                 </p>
-                <p className="text-sm font-semibold text-card-foreground">{stat.title}</p>
+                <p className="text-sm font-semibold text-card-foreground group-hover:text-foreground transition-colors">{stat.title}</p>
                 
                 <div className="flex items-center gap-1.5 pt-1">
                   {stat.isLive && (
@@ -168,7 +165,6 @@ export function QuickStats() {
                   </p>
                 </div>
               </div>
-
             </div>
           ))}
         </div>
