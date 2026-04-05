@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import { Menu, X, Network, Mail, ArrowRight } from "lucide-react"
 import { useState, useEffect } from "react"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { ContactWidget } from "./contact-widget" // <-- Imported the new widget
 
 const navItems = [
   { href: "/", label: "Home" }, 
@@ -38,7 +39,7 @@ export function Navigation() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         
-        {/* UPDATED: Logo with Samarth.ai branding */}
+        {/* Logo with Samarth.ai branding */}
         <Link 
           href="/" 
           className="group flex items-center gap-3 transition-all hover:opacity-90"
@@ -79,18 +80,12 @@ export function Navigation() {
           {/* Theme Toggle - Visible on both Mobile and Desktop */}
           <ThemeToggle />
 
-          {/* CTA Button - Hidden on Mobile, Visible on Desktop */}
-          <a
-            href="mailto:your@email.com"
-            className="hidden md:inline-flex group relative items-center gap-2.5 rounded-xl bg-gradient-to-r from-primary to-cyan-400 px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition-all hover:shadow-xl hover:shadow-primary/40 hover:scale-[1.02] overflow-hidden"
-          >
-            <span className="relative z-10 flex items-center gap-2">
-              <Mail className="h-4 w-4" /> {/* Swapped to Mail to avoid clashing with the new logo */}
-              Let&apos;s Connect
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
-          </a>
+          {/* REPLACED: Desktop CTA Button now uses ContactWidget */}
+          <ContactWidget 
+            email="your.actual.email@gmail.com" // <-- DON'T FORGET TO CHANGE THIS
+            label="Let's Connect" 
+            className="hidden md:flex w-auto py-2.5 px-6 text-sm" 
+          />
 
           {/* Mobile Menu Button - Visible on Mobile, Hidden on Desktop */}
           <button
@@ -138,14 +133,12 @@ export function Navigation() {
           ))}
           
           <div className="pt-4 border-t border-border/40">
-            <a
-              href="mailto:your@email.com"
-              className="flex items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-primary to-cyan-400 px-6 py-4 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25"
-            >
-              <Mail className="h-4 w-4" /> {/* Swapped to Mail here as well */}
-              Let&apos;s Connect
-              <ArrowRight className="h-4 w-4" />
-            </a>
+            {/* REPLACED: Mobile CTA Button now uses ContactWidget */}
+            <ContactWidget 
+              email="your.actual.email@gmail.com" // <-- DON'T FORGET TO CHANGE THIS
+              label="Let's Connect" 
+              className="flex w-full py-4 text-sm" 
+            />
           </div>
         </div>
       </div>
