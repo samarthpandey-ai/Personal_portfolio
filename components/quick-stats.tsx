@@ -12,7 +12,8 @@ import {
 } from "lucide-react"
 import { useEffect, useState, useRef, useMemo } from "react"
 import Link from "next/link"
-import { myProjects } from "@/lib/project-config"
+// UPDATED: Import both myProjects and featuredProjectTitles
+import { myProjects, featuredProjectTitles } from "@/lib/project-config"
 import { ProjectCard } from "./project-card"
 
 function AnimatedCounter({ value }: { value: number }) {
@@ -56,10 +57,9 @@ export function QuickStats() {
     leetcode: 69
   })
 
-  const latestTwo = useMemo(() => {
-    return [...myProjects]
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-      .slice(0, 2);
+  // UPDATED: Now filters based on your featured list from project-config.ts
+  const featuredProjects = useMemo(() => {
+    return myProjects.filter(project => featuredProjectTitles.includes(project.title));
   }, []);
 
   useEffect(() => {
@@ -139,7 +139,6 @@ export function QuickStats() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {statsList.map((stat, index) => (
-            // UPDATED: Added hover:-translate-y-1.5, hover:scale-[1.02], and shadow-lg
             <div key={index} className="group relative overflow-hidden rounded-2xl border border-border bg-card/40 backdrop-blur-md p-6 transition-all duration-500 ease-out hover:border-primary/40 hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/5 shadow-sm cursor-default">
               <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
               
@@ -175,8 +174,9 @@ export function QuickStats() {
               <div className="h-10 w-10 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/30 backdrop-blur-sm">
                 <Sparkles className="h-5 w-5 text-primary" />
               </div>
+              {/* UPDATED: Changed from "Latest Innovations" to "Featured Projects" */}
               <h3 className="text-3xl font-bold tracking-tight text-foreground">
-                Latest <span className="text-gradient">Innovations</span>
+                Featured <span className="text-gradient">Projects</span>
               </h3>
             </div>
             <Link href="/projects" className="hidden md:flex items-center gap-2 text-sm text-primary hover:underline">
@@ -185,7 +185,8 @@ export function QuickStats() {
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {latestTwo.map((project, index) => (
+            {/* UPDATED: Now maps over the featuredProjects array */}
+            {featuredProjects.map((project, index) => (
               <ProjectCard key={index} {...project} />
             ))}
           </div>
