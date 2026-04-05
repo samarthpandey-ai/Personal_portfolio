@@ -1,3 +1,9 @@
+// 1. Add your "Featured" list here
+export const featuredProjectTitles = [
+  "Hybrid Document Search Engine",
+  "Lecture-to-MCQ Generator"
+];
+
 export const myProjects = [
   {
     title: "Hybrid Document Search Engine",
