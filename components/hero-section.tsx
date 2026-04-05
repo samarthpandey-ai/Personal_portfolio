@@ -60,13 +60,14 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-screen w-full transition-colors duration-500 overflow-x-hidden">
+    // FIXED: Added flex items-center for proper vertical centering
+    <section className="relative min-h-screen w-full flex items-center transition-colors duration-500 overflow-x-hidden">
       
       {/* The Dynamic Background Component */}
       <LlmBackground />
       
-      {/* UPDATED: Reduced pt (padding-top) values to remove the gap */}
-      <div className="relative mx-auto max-w-7xl px-6 pt-16 pb-20 md:pt-24 md:pb-32 lg:pt-28 lg:pb-40 z-10">
+      {/* FIXED: Simplified padding — flex handles centering, pt-20 just clears the navbar */}
+      <div className="relative mx-auto max-w-7xl px-6 pt-20 pb-10 z-10">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 items-center">
           <div className="space-y-8">
             <div className="inline-flex items-center gap-3 rounded-full border border-primary/40 bg-primary/10 px-5 py-2.5 text-sm font-medium text-primary backdrop-blur-sm shadow-sm">
@@ -116,18 +117,26 @@ export function HeroSection() {
             </div>
 
             <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Engineering intelligent systems at the intersection of <span className="text-foreground font-medium">deep learning</span> and <span className="text-foreground font-medium">natural language processing</span>. 
+              Engineering intelligent systems at the intersection of{" "}
+              <span className="text-foreground font-medium">deep learning</span> and{" "}
+              <span className="text-foreground font-medium">natural language processing</span>.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
-              <Link href="/projects" className="group relative inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-primary via-primary to-cyan-400 px-8 py-4 text-sm font-semibold text-primary-foreground shadow-xl shadow-primary/30 transition-all hover:shadow-2xl hover:shadow-primary/40 hover:scale-[1.02] overflow-hidden">
+              <Link
+                href="/projects"
+                className="group relative inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-primary via-primary to-cyan-400 px-8 py-4 text-sm font-semibold text-primary-foreground shadow-xl shadow-primary/30 transition-all hover:shadow-2xl hover:shadow-primary/40 hover:scale-[1.02] overflow-hidden"
+              >
                 <span className="relative z-10 flex items-center gap-3">
                   <Cpu className="h-4 w-4" />
                   View Projects
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
-              <Link href="/about" className="group inline-flex items-center gap-3 rounded-2xl border border-border bg-card px-8 py-4 text-sm font-semibold text-foreground backdrop-blur-sm transition-all hover:border-primary/50 hover:scale-[1.02] shadow-sm">
+              <Link
+                href="/about"
+                className="group inline-flex items-center gap-3 rounded-2xl border border-border bg-card px-8 py-4 text-sm font-semibold text-foreground backdrop-blur-sm transition-all hover:border-primary/50 hover:scale-[1.02] shadow-sm"
+              >
                 <Network className="h-4 w-4 text-primary" />
                 About Me
               </Link>
@@ -164,7 +173,6 @@ export function HeroSection() {
               <div className="absolute -top-4 -right-2 md:-top-6 md:-right-6 z-20">
                 <StatusBadge />
               </div>
-              
             </div>
           </div>
         </div>
