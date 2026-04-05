@@ -53,7 +53,7 @@ function AnimatedCounter({ value }: { value: number }) {
 export function QuickStats() {
   const [dynamicStats, setDynamicStats] = useState({
     github: 1247, 
-    leetcode: 69
+    leetcode: 69 // Default fallback
   })
 
   const latestTwo = useMemo(() => {
@@ -66,7 +66,7 @@ export function QuickStats() {
     let isMounted = true;
     async function getLiveStats() {
       try {
-        // 1. Fetch GitHub
+        // 1. Fetch GitHub with Cache Busting
         const ghRes = await fetch(`https://api.github.com/users/samarthpandey-ai/events?t=${Date.now()}`, {
           cache: 'no-store'
         })
@@ -81,37 +81,15 @@ export function QuickStats() {
           }
         }
 
-        // 2. UPDATED: Direct LeetCode GraphQL Fetch
-        // This hits LeetCode directly, bypassing the 24-hour Heroku cache.
-        const lcRes = await fetch('https://leetcode.com/graphql', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            query: `
-              query userProblemsSolved($username: String!) {
-                matchedUser(username: $username) {
-                  submitStats {
-                    acSubmissionNum {
-                      difficulty
-                      count
-                    }
-                  }
-                }
-              }
-            `,
-            variables: { username: "samp123" },
-          }),
+        // 2. UPDATED: Call Internal API Route to bypass CORS and get real-time LeetCode stats
+        const lcRes = await fetch(`/api/leetcode?t=${Date.now()}`, {
           cache: 'no-store'
         });
 
         if (lcRes.ok) {
           const data = await lcRes.json();
-          const totalSolved = data.data.matchedUser.submitStats.acSubmissionNum.find(
-            (item: any) => item.difficulty === "All"
-          ).count;
-          
-          if (isMounted) {
-            setDynamicStats(prev => ({ ...prev, leetcode: totalSolved }));
+          if (isMounted && data.totalSolved) {
+            setDynamicStats(prev => ({ ...prev, leetcode: data.totalSolved }));
           }
         }
       } catch (error) {
