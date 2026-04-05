@@ -12,8 +12,8 @@ import {
 } from "lucide-react"
 import { useEffect, useState, useRef, useMemo } from "react"
 import Link from "next/link"
-// UPDATED: Import both myProjects and featuredProjectTitles
-import { myProjects, featuredProjectTitles } from "@/lib/project-config"
+// We keep myProjects, but we don't strictly need featuredProjectTitles here anymore since we are sorting by date
+import { myProjects } from "@/lib/project-config"
 import { ProjectCard } from "./project-card"
 
 function AnimatedCounter({ value }: { value: number }) {
@@ -57,9 +57,11 @@ export function QuickStats() {
     leetcode: 69
   })
 
-  // UPDATED: Now filters based on your featured list from project-config.ts
-  const featuredProjects = useMemo(() => {
-    return myProjects.filter(project => featuredProjectTitles.includes(project.title));
+  // REVERTED: Now sorts by date to get the two newest projects
+  const latestTwo = useMemo(() => {
+    return [...myProjects]
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 2);
   }, []);
 
   useEffect(() => {
@@ -174,9 +176,9 @@ export function QuickStats() {
               <div className="h-10 w-10 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/30 backdrop-blur-sm">
                 <Sparkles className="h-5 w-5 text-primary" />
               </div>
-              {/* UPDATED: Changed from "Latest Innovations" to "Featured Projects" */}
+              {/* UPDATED: Changed back to Latest Projects */}
               <h3 className="text-3xl font-bold tracking-tight text-foreground">
-                Featured <span className="text-gradient">Projects</span>
+                Latest <span className="text-gradient">Projects</span>
               </h3>
             </div>
             <Link href="/projects" className="hidden md:flex items-center gap-2 text-sm text-primary hover:underline">
@@ -185,8 +187,8 @@ export function QuickStats() {
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {/* UPDATED: Now maps over the featuredProjects array */}
-            {featuredProjects.map((project, index) => (
+            {/* UPDATED: Now maps over the latestTwo array again */}
+            {latestTwo.map((project, index) => (
               <ProjectCard key={index} {...project} />
             ))}
           </div>
