@@ -12,7 +12,6 @@ import {
 } from "lucide-react"
 import { useEffect, useState, useRef, useMemo } from "react"
 import Link from "next/link"
-// We keep myProjects, but we don't strictly need featuredProjectTitles here anymore since we are sorting by date
 import { myProjects } from "@/lib/project-config"
 import { ProjectCard } from "./project-card"
 
@@ -57,7 +56,6 @@ export function QuickStats() {
     leetcode: 69
   })
 
-  // REVERTED: Now sorts by date to get the two newest projects
   const latestTwo = useMemo(() => {
     return [...myProjects]
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -68,7 +66,10 @@ export function QuickStats() {
     let isMounted = true;
     async function getLiveStats() {
       try {
-        const ghRes = await fetch('https://api.github.com/users/samarthpandey-ai/events')
+        // 1. Fetch GitHub
+        const ghRes = await fetch(`https://api.github.com/users/samarthpandey-ai/events?t=${Date.now()}`, {
+          cache: 'no-store'
+        })
         if (ghRes.ok) {
           const ghData = await ghRes.json()
           const recentCommits = ghData
@@ -80,11 +81,37 @@ export function QuickStats() {
           }
         }
 
-        const lcRes = await fetch('https://leetcode-stats-api.herokuapp.com/samp123')
+        // 2. UPDATED: Direct LeetCode GraphQL Fetch
+        // This hits LeetCode directly, bypassing the 24-hour Heroku cache.
+        const lcRes = await fetch('https://leetcode.com/graphql', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            query: `
+              query userProblemsSolved($username: String!) {
+                matchedUser(username: $username) {
+                  submitStats {
+                    acSubmissionNum {
+                      difficulty
+                      count
+                    }
+                  }
+                }
+              }
+            `,
+            variables: { username: "samp123" },
+          }),
+          cache: 'no-store'
+        });
+
         if (lcRes.ok) {
-          const lcData = await lcRes.json()
-          if (lcData.totalSolved && isMounted) {
-            setDynamicStats(prev => ({ ...prev, leetcode: lcData.totalSolved }))
+          const data = await lcRes.json();
+          const totalSolved = data.data.matchedUser.submitStats.acSubmissionNum.find(
+            (item: any) => item.difficulty === "All"
+          ).count;
+          
+          if (isMounted) {
+            setDynamicStats(prev => ({ ...prev, leetcode: totalSolved }));
           }
         }
       } catch (error) {
@@ -176,7 +203,6 @@ export function QuickStats() {
               <div className="h-10 w-10 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/30 backdrop-blur-sm">
                 <Sparkles className="h-5 w-5 text-primary" />
               </div>
-              {/* UPDATED: Changed back to Latest Projects */}
               <h3 className="text-3xl font-bold tracking-tight text-foreground">
                 Latest <span className="text-gradient">Projects</span>
               </h3>
@@ -187,7 +213,6 @@ export function QuickStats() {
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {/* UPDATED: Now maps over the latestTwo array again */}
             {latestTwo.map((project, index) => (
               <ProjectCard key={index} {...project} />
             ))}
