@@ -8,7 +8,7 @@ import { SkillsSection } from "@/components/skills-section"
 //import { GoalsSection } from "@/components/goals-section"
 import { ContactWidget } from "@/components/contact-widget"
 import { TechStack } from "@/components/tech-stack" 
-import { MapPin, GraduationCap, Sparkles, Download, Briefcase } from "lucide-react"
+import { MapPin, GraduationCap, Sparkles, Download, Briefcase, Github, Linkedin, Twitter, Mail } from "lucide-react"
 
 export default function AboutPage() {
   return (
@@ -41,46 +41,46 @@ export default function AboutPage() {
               </div>
 
               <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-2xl">
-              <p>
-  I am a B.Tech student in Computer Science at{" "}
-  <span className="font-semibold text-foreground">
-    Thapar Institute of Engineering and Technology
-  </span>
-  , focused on{" "}
-  <span className="font-semibold text-foreground">Machine Learning</span>,{" "}
-  <span className="font-semibold text-foreground">
-    Natural Language Processing
-  </span>
-  , and applied AI systems. I build software that combines machine learning
-  with clean, reliable implementation.
-</p>
+                <p>
+                  I am a B.Tech student in Computer Science at{" "}
+                  <span className="font-semibold text-foreground">
+                    Thapar Institute of Engineering and Technology
+                  </span>
+                  , focused on{" "}
+                  <span className="font-semibold text-foreground">Machine Learning</span>,{" "}
+                  <span className="font-semibold text-foreground">
+                    Natural Language Processing
+                  </span>
+                  , and applied AI systems. I build software that combines machine learning
+                  with clean, reliable implementation.
+                </p>
 
-<p>
-  I have worked on{" "}
-  <span className="font-semibold text-foreground">semantic search</span>,{" "}
-  <span className="font-semibold text-foreground">
-    medical recommendation systems
-  </span>
-  , and{" "}
-  <span className="font-semibold text-foreground">
-    intelligent research automation
-  </span>
-  . My projects focus on data pipelines, model integration, and interfaces
-  that make AI systems usable in practice.
-</p>
+                <p>
+                  I have worked on{" "}
+                  <span className="font-semibold text-foreground">semantic search</span>,{" "}
+                  <span className="font-semibold text-foreground">
+                    medical recommendation systems
+                  </span>
+                  , and{" "}
+                  <span className="font-semibold text-foreground">
+                    intelligent research automation
+                  </span>
+                  . My projects focus on data pipelines, model integration, and interfaces
+                  that make AI systems usable in practice.
+                </p>
 
-<p>
-  Currently, I am strengthening my foundation in{" "}
-  <span className="font-semibold text-foreground">
-    Data Structures and Algorithms
-  </span>{" "}
-  and{" "}
-  <span className="font-semibold text-foreground">
-    Machine Learning fundamentals
-  </span>
-  while preparing for internship roles. I am looking for opportunities to
-  work on real codebases and build stronger engineering skills.
-</p>
+                <p>
+                  Currently, I am strengthening my foundation in{" "}
+                  <span className="font-semibold text-foreground">
+                    Data Structures and Algorithms
+                  </span>{" "}
+                  and{" "}
+                  <span className="font-semibold text-foreground">
+                    Machine Learning fundamentals
+                  </span>
+                  while preparing for internship roles. I am looking for opportunities to
+                  work on real codebases and build stronger engineering skills.
+                </p>
               </div>
 
               {/* Action buttons */}
@@ -102,6 +102,52 @@ export default function AboutPage() {
                   Download Resume
                 </a>
               </div>
+
+              {/* === NEW SOCIAL LINKS SECTION === */}
+              <div className="pt-8 mt-8 border-t border-border/40">
+                <p className="text-sm font-medium text-muted-foreground mb-4">Find me online</p>
+                <div className="flex flex-wrap gap-3">
+                  <a 
+                    href="https://github.com/samarthkrpandey" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 rounded-full border border-border/50 bg-secondary/20 text-sm font-medium text-muted-foreground transition-all hover:text-foreground hover:bg-secondary/60 hover:border-border dark:hover:border-white/20"
+                  >
+                    <Github className="h-4 w-4" />
+                    GitHub
+                  </a>
+                  
+                  <a 
+                    href="https://linkedin.com/in/samarthkrpandey" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 rounded-full border border-border/50 bg-secondary/20 text-sm font-medium text-muted-foreground transition-all hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-500/10 hover:border-blue-500/30"
+                  >
+                    <Linkedin className="h-4 w-4" />
+                    LinkedIn
+                  </a>
+
+                  <a 
+                    href="https://twitter.com/samarthkrpandey" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 rounded-full border border-border/50 bg-secondary/20 text-sm font-medium text-muted-foreground transition-all hover:text-sky-500 hover:bg-sky-500/10 hover:border-sky-500/30"
+                  >
+                    <Twitter className="h-4 w-4" />
+                    Twitter
+                  </a>
+
+                  <a 
+                    href="mailto:samarth.ai.official@gmail.com" 
+                    className="flex items-center gap-2 px-4 py-2 rounded-full border border-border/50 bg-secondary/20 text-sm font-medium text-muted-foreground transition-all hover:text-primary hover:bg-primary/10 hover:border-primary/30"
+                  >
+                    <Mail className="h-4 w-4" />
+                    Email
+                  </a>
+                </div>
+              </div>
+              {/* === END SOCIAL LINKS SECTION === */}
+
             </div>
 
             {/* Sidebar Info (Right Side) */}
