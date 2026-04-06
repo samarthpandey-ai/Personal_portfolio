@@ -2,15 +2,20 @@
 
 import { useState } from "react"
 import { Code2, Brain, Network, Database, Terminal, Zap, CheckCircle2, Cpu } from "lucide-react"
-import clsx from "clsx" // Make sure to run 'npm install clsx' or 'yarn add clsx'
 
-// Data structure with colored logos from Simple Icons CDN for that extra professional look
+// Explicit Tailwind classes are required so the compiler doesn't strip them out in Dark Mode!
 const skills = [
   {
     category: "Programming",
     icon: <Code2 className="h-6 w-6" />,
-    color: "text-blue-500",
-    accent: "blue",
+    styles: {
+      iconText: "text-blue-500 dark:text-blue-400",
+      iconBgActive: "bg-blue-500/10",
+      titleHover: "group-hover:text-blue-600 dark:group-hover:text-blue-400",
+      glow: "from-blue-100/80 dark:from-blue-500/15",
+      borderActive: "border-blue-500/60 dark:border-blue-400/60 shadow-[0_0_30px_rgba(59,130,246,0.15)]",
+      tagActive: "border-blue-500/40 bg-blue-500/10 text-blue-700 dark:text-blue-300",
+    },
     items: [
       { name: "Python", logo: "https://cdn.simpleicons.org/python/3776AB" },
       { name: "C++", logo: "https://cdn.simpleicons.org/cplusplus/00599C" },
@@ -19,8 +24,14 @@ const skills = [
   {
     category: "Machine Learning",
     icon: <Brain className="h-6 w-6" />,
-    color: "text-purple-500",
-    accent: "purple",
+    styles: {
+      iconText: "text-purple-500 dark:text-purple-400",
+      iconBgActive: "bg-purple-500/10",
+      titleHover: "group-hover:text-purple-600 dark:group-hover:text-purple-400",
+      glow: "from-purple-100/80 dark:from-purple-500/15",
+      borderActive: "border-purple-500/60 dark:border-purple-400/60 shadow-[0_0_30px_rgba(168,85,247,0.15)]",
+      tagActive: "border-purple-500/40 bg-purple-500/10 text-purple-700 dark:text-purple-300",
+    },
     items: [
       { name: "Scikit-Learn", logo: "https://cdn.simpleicons.org/scikitlearn/F7931E" },
       { name: "Feature Eng.", logo: "" },
@@ -30,8 +41,14 @@ const skills = [
   {
     category: "Deep Learning",
     icon: <Network className="h-6 w-6" />,
-    color: "text-orange-500",
-    accent: "orange",
+    styles: {
+      iconText: "text-orange-500 dark:text-orange-400",
+      iconBgActive: "bg-orange-500/10",
+      titleHover: "group-hover:text-orange-600 dark:group-hover:text-orange-400",
+      glow: "from-orange-100/80 dark:from-orange-500/15",
+      borderActive: "border-orange-500/60 dark:border-orange-400/60 shadow-[0_0_30px_rgba(249,115,22,0.15)]",
+      tagActive: "border-orange-500/40 bg-orange-500/10 text-orange-700 dark:text-orange-300",
+    },
     items: [
       { name: "PyTorch", logo: "https://cdn.simpleicons.org/pytorch/EE4C2C" },
       { name: "CNNs", logo: "" },
@@ -41,8 +58,14 @@ const skills = [
   {
     category: "NLP & IR",
     icon: <Zap className="h-6 w-6" />,
-    color: "text-yellow-500",
-    accent: "yellow",
+    styles: {
+      iconText: "text-amber-500 dark:text-amber-400",
+      iconBgActive: "bg-amber-500/10",
+      titleHover: "group-hover:text-amber-600 dark:group-hover:text-amber-400",
+      glow: "from-amber-100/80 dark:from-amber-500/15",
+      borderActive: "border-amber-500/60 dark:border-amber-400/60 shadow-[0_0_30px_rgba(245,158,11,0.15)]",
+      tagActive: "border-amber-500/40 bg-amber-500/10 text-amber-700 dark:text-amber-300",
+    },
     items: [
       { name: "TF-IDF", logo: "" },
       { name: "Sentiment Analysis", logo: "" },
@@ -52,8 +75,14 @@ const skills = [
   {
     category: "Data Handling",
     icon: <Database className="h-6 w-6" />,
-    color: "text-emerald-500",
-    accent: "emerald",
+    styles: {
+      iconText: "text-emerald-500 dark:text-emerald-400",
+      iconBgActive: "bg-emerald-500/10",
+      titleHover: "group-hover:text-emerald-600 dark:group-hover:text-emerald-400",
+      glow: "from-emerald-100/80 dark:from-emerald-500/15",
+      borderActive: "border-emerald-500/60 dark:border-emerald-400/60 shadow-[0_0_30px_rgba(16,185,129,0.15)]",
+      tagActive: "border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
+    },
     items: [
       { name: "Pandas", logo: "https://cdn.simpleicons.org/pandas/150458" },
       { name: "NumPy", logo: "https://cdn.simpleicons.org/numpy/013243" },
@@ -62,8 +91,14 @@ const skills = [
   {
     category: "Systems & Deployment",
     icon: <Terminal className="h-6 w-6" />,
-    color: "text-pink-500",
-    accent: "pink",
+    styles: {
+      iconText: "text-rose-500 dark:text-rose-400",
+      iconBgActive: "bg-rose-500/10",
+      titleHover: "group-hover:text-rose-600 dark:group-hover:text-rose-400",
+      glow: "from-rose-100/80 dark:from-rose-500/15",
+      borderActive: "border-rose-500/60 dark:border-rose-400/60 shadow-[0_0_30px_rgba(244,63,94,0.15)]",
+      tagActive: "border-rose-500/40 bg-rose-500/10 text-rose-700 dark:text-rose-300",
+    },
     items: [
       { name: "Flask", logo: "https://cdn.simpleicons.org/flask/000000/ffffff" },
       { name: "Git", logo: "https://cdn.simpleicons.org/git/F05032" },
@@ -73,27 +108,12 @@ const skills = [
 ]
 
 export function TechStack() {
-  // 1. Initialize State for Click Interaction (The 'Active' state)
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
-
-  // Helper to get accent color classes dynamically
-  const getAccent = (colorName: string, state: 'base' | 'hover' | 'active') => {
-    switch(state) {
-      case 'active': return `border-${colorName}-400 bg-${colorName}-900/40`;
-      case 'hover': return `group-hover:border-${colorName}-500 group-hover:bg-${colorName}-900/20`;
-      default: return `border-border/60 bg-secondary/60 text-${colorName}-500`;
-    }
-  }
 
   return (
     <section className="py-24 relative overflow-hidden">
-      {/* Background Gradients for Depth */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-0 h-96 w-96 rounded-full bg-primary/10 blur-[120px]" />
-        <div className="absolute bottom-1/2 right-0 h-80 w-80 rounded-full bg-cyan-400/10 blur-[100px]" />
-      </div>
-
       <div className="mx-auto max-w-7xl px-6 relative z-10">
+        
         {/* Header Section */}
         <div className="flex flex-col items-center mb-16 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-xs font-bold text-primary uppercase tracking-[0.2em] mb-4">
@@ -108,7 +128,7 @@ export function TechStack() {
           </p>
         </div>
 
-        {/* 2. The Bento Grid (6 cards) */}
+        {/* Bento Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {skills.map((skill) => {
             const isSelected = selectedSkill === skill.category;
@@ -116,74 +136,67 @@ export function TechStack() {
             return (
               <div 
                 key={skill.category}
-                // 3. Click handler with state update
                 onClick={() => setSelectedSkill(isSelected ? null : skill.category)}
-                className={clsx(
-                  // Base Styles (The "Glassmorphism" effect)
-                  "group relative cursor-pointer rounded-2xl border transition-all duration-300 p-8",
-                  "dark:bg-card/50 dark:backdrop-blur-sm dark:border-border/50",
-                  "bg-white/80 backdrop-blur-sm border-neutral-200",
-                  
-                  // Hover Styles (Border lightens, outer glow appears)
-                  "hover:border-primary/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/10",
-
-                  // 4. Clicked (Selected/Active) State (Strong colored glow & border)
-                  isSelected && [
-                    `dark:border-${skill.accent}-400 border-${skill.accent}-400`,
-                    "dark:bg-card/90 bg-white/90 shadow-[0_0_40px_rgba(34,211,238,0.2)]",
-                    // Dynamic coloring for elements on selected state handled in inner divs
-                  ]
-                )}
+                className={`group relative cursor-pointer overflow-hidden rounded-2xl border transition-all duration-500 p-8 
+                  ${isSelected 
+                    ? `bg-white dark:bg-zinc-900 ${skill.styles.borderActive}` 
+                    : "bg-white/60 dark:bg-zinc-900/40 border-border/50 hover:border-border hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-black/50"
+                  } backdrop-blur-md`}
               >
-                {/* Checkmark indicator for selected state */}
-                <div className={clsx(
-                  "absolute top-5 right-5 h-6 w-6 transition-all duration-500",
-                  isSelected ? "opacity-100 scale-100" : "opacity-0 scale-50"
-                )}>
-                  <CheckCircle2 className={`h-6 w-6 text-${skill.accent}-400 fill-background`} />
+                {/* THE GLOW EFFECT 
+                  Hidden by default (opacity-0). Appears on hover or when clicked. 
+                */}
+                <div className={`absolute inset-0 pointer-events-none transition-opacity duration-500 bg-gradient-to-br to-transparent ${skill.styles.glow} ${isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
+
+                {/* Checkmark icon for active state */}
+                <div className={`absolute top-6 right-6 h-5 w-5 transition-all duration-500 ${isSelected ? "opacity-100 scale-100" : "opacity-0 scale-50"}`}>
+                  <CheckCircle2 className={`h-full w-full ${skill.styles.iconText}`} />
                 </div>
 
-                {/* 5. The Colored Icon & Label Section */}
-                <div className="flex items-center gap-5 mb-6">
-                  <div className={clsx(
-                      "p-3 rounded-xl border transition-all duration-300",
-                      getAccent(skill.accent, isSelected ? 'active' : 'base'),
-                      getAccent(skill.accent, 'hover')
-                  )}>
-                    {skill.icon}
-                  </div>
-                  <h3 className={`text-xl font-bold text-foreground tracking-tight group-hover:text-${skill.accent}-400`}>{skill.category}</h3>
-                </div>
-                
-                {/* 6. The Individual Skill Tags Section */}
-                <div className="flex flex-wrap gap-3 mb-5">
-                  {skill.items.map((item) => (
-                    <div 
-                      key={item.name} 
-                      className={clsx(
-                        "flex items-center gap-2 px-3.5 py-2 rounded-xl text-[13px] font-medium transition-colors",
-                        "bg-background/50 border border-border/50 group-hover:border-primary/30",
-                        isSelected && `border-${skill.accent}-400 bg-${skill.accent}-900/30` // Accent coloring on active state
-                      )}
-                    >
-                      {item.logo ? (
-                        <img src={item.logo} alt={item.name} className="h-4 w-4 object-contain" />
-                      ) : (
-                        <Zap className="h-3 w-3 text-primary/50" />
-                      )}
-                      {item.name}
+                {/* Card Content (z-10 keeps it above the glow) */}
+                <div className="relative z-10">
+                  
+                  {/* Category Title & Icon */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className={`p-3 rounded-xl border border-border/50 transition-colors duration-300 ${skill.styles.iconText} ${isSelected ? skill.styles.iconBgActive : 'bg-background/50 group-hover:bg-background/80'}`}>
+                      {skill.icon}
                     </div>
-                  ))}
-                </div>
-                
-                {/* 7. Detailed Description (If available) */}
-                {skill.details && (
-                  <div className="pt-5 border-t border-border/30">
-                    <p className="text-xs text-muted-foreground leading-relaxed italic">
-                      {skill.details}
-                    </p>
+                    <h3 className={`text-xl font-bold tracking-tight transition-colors duration-300 ${isSelected ? skill.styles.iconText : `text-foreground ${skill.styles.titleHover}`}`}>
+                      {skill.category}
+                    </h3>
                   </div>
-                )}
+                  
+                  {/* Skill Pills */}
+                  <div className="flex flex-wrap gap-2.5 mb-5">
+                    {skill.items.map((item) => (
+                      <div 
+                        key={item.name} 
+                        className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg border text-[13px] font-semibold transition-colors duration-300
+                          ${isSelected 
+                            ? skill.styles.tagActive 
+                            : 'border-border/50 bg-background/50 text-muted-foreground group-hover:border-border group-hover:text-foreground'
+                          }`}
+                      >
+                        {item.logo ? (
+                          <img src={item.logo} alt={item.name} className="h-4 w-4 object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />
+                        ) : (
+                          <Zap className={`h-3.5 w-3.5 ${isSelected ? skill.styles.iconText : 'text-muted-foreground group-hover:text-foreground'}`} />
+                        )}
+                        {item.name}
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Details Paragraph */}
+                  {skill.details && (
+                    <div className={`pt-5 border-t transition-colors duration-300 ${isSelected ? 'border-border' : 'border-border/50'}`}>
+                      <p className={`text-xs leading-relaxed italic transition-colors duration-300 ${isSelected ? 'text-foreground/80' : 'text-muted-foreground group-hover:text-foreground/70'}`}>
+                        {skill.details}
+                      </p>
+                    </div>
+                  )}
+
+                </div>
               </div>
             );
           })}
