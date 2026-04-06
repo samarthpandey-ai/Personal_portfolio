@@ -18,7 +18,9 @@ const skills = [
     items: [
       { name: "Python", logo: "https://cdn.simpleicons.org/python/3776AB" },
       { name: "C++", logo: "https://cdn.simpleicons.org/cplusplus/00599C" },
+      { name: "SQL", logo: "https://cdn.simpleicons.org/mysql/4479A1" },
     ],
+    details: "Object-Oriented Programming, scripting, data pipelines, and competitive problem solving.",
   },
   {
     category: "Machine Learning",
@@ -32,7 +34,7 @@ const skills = [
     },
     items: [
       { name: "Scikit-Learn", logo: "https://cdn.simpleicons.org/scikitlearn/F7931E" },
-      { name: "Feature Eng.", logo: "" },
+      { name: "Feature Engineering", logo: "" },
     ],
     details: "Supervised Learning, Classification, Regression, Evaluation Metrics",
   },
@@ -50,7 +52,7 @@ const skills = [
       { name: "PyTorch", logo: "https://cdn.simpleicons.org/pytorch/EE4C2C" },
       { name: "CNNs", logo: "" },
     ],
-    details: "Neural Networks, CNN Architectures, fundamental DL",
+    details: "Neural Networks, CNN Architectures, backpropagation, and fundamental DL training loops.",
   },
   {
     category: "NLP & IR",
@@ -63,10 +65,13 @@ const skills = [
       tagActive: "border-amber-500/40 bg-amber-500/10 text-amber-700 dark:text-amber-300",
     },
     items: [
+      { name: "HuggingFace", logo: "https://cdn.simpleicons.org/huggingface/FFD21E" },
       { name: "TF-IDF", logo: "" },
+      { name: "Sentence Transformers", logo: "" },
+      { name: "FAISS", logo: "" },
       { name: "Sentiment Analysis", logo: "" },
     ],
-    details: "Text Preprocessing, BoW, Text Similarity",
+    details: "Text Preprocessing, BoW, Text Similarity, Semantic Search, Vector Embeddings",
   },
   {
     category: "Data Handling",
@@ -82,6 +87,7 @@ const skills = [
       { name: "Pandas", logo: "https://cdn.simpleicons.org/pandas/150458" },
       { name: "NumPy", logo: "https://cdn.simpleicons.org/numpy/013243" },
     ],
+    details: "Data cleaning, transformation, exploratory analysis, and dataset preparation for ML pipelines.",
   },
   {
     category: "Systems & Deployment",
@@ -98,6 +104,7 @@ const skills = [
       { name: "Git", logo: "https://cdn.simpleicons.org/git/F05032" },
       { name: "Jupyter", logo: "https://cdn.simpleicons.org/jupyter/F37626" },
     ],
+    details: "REST API development, version control workflows, reproducible notebooks, and local model serving.",
   },
 ]
 
@@ -153,7 +160,7 @@ export function TechStack() {
                     </h3>
                   </div>
                   
-                  {/* Skill Pills (Logos are always colored now) */}
+                  {/* Skill Pills */}
                   <div className="flex flex-wrap gap-2.5 mb-5">
                     {skill.items.map((item) => (
                       <div 
