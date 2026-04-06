@@ -42,13 +42,13 @@ export default function AboutPage() {
                   My work centers on building practical solutions that combine solid engineering with modern machine learning techniques.
                 </p>
                 <p>
-                  I have developed projects involving <span className="font-semibold text-foreground">semantic search</span>, <span className="font-semibold text-foreground">medical recommendation systems</span>, 
-                  and <span className="font-semibold text-foreground">intelligent research automation</span>. These projects emphasize <span className="font-semibold text-foreground">clean architecture</span>, 
-                  <span className="font-semibold text-foreground">reproducible workflows</span>, and real-world usability rather than experimental prototypes.
+                 I have developed projects involving semantic search, medical recommendation systems, and intelligent research automation. 
+                  These projects emphasize clean architecture, reproducible workflows, and real-world usability rather than experimental prototypes.
                 </p>
                 <p>
-                  Currently, I am strengthening my foundation in <span className="font-semibold text-foreground">Data Structures, Algorithms</span>, and 
-                  <span className="font-semibold text-foreground">Machine Learning fundamentals</span> while preparing for <span className="font-semibold text-primary">GATE 2027</span>. I am actively seeking internship opportunities where I can contribute to real systems and learn from experienced engineers.
+                  Currently, I am strengthening my foundation in Data Structures, Algorithms, and Machine Learning
+                  fundamentals while preparing for GATE 2027. I am actively seeking internship opportunities where
+                  I can contribute to real systems and learn from experienced engineers.
                 </p>
               </div>
 
