@@ -1,6 +1,6 @@
 "use client"
 
-import { JourneyTimeline } from "@/components/journey-timeline"
+//import { JourneyTimeline } from "@/components/journey-timeline"
 // Note: I left the import here just in case, but it's commented out at the bottom!
 import { SkillsSection } from "@/components/skills-section" 
 import { GoalsSection } from "@/components/goals-section"
@@ -137,8 +137,8 @@ export default function AboutPage() {
       {/* === YOUR NEW TECH STACK IS HERE === */}
       <TechStack />
 
-      {/* === YOUR JOURNEY TIMELINE === */}
-      <JourneyTimeline />
+      {/* === YOUR JOURNEY TIMELINE === 
+      <JourneyTimeline /> */}
       
       {/* Note: I commented out the old SkillsSection so you don't have duplicate sections. 
           If you still want it, just remove the {/* and */}
