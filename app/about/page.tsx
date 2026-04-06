@@ -36,18 +36,18 @@ export default function AboutPage() {
 
               <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-2xl">
                 <p>
-                  I am a B.Tech student in Computer Science at **Thapar Institute of Engineering and Technology**, 
-                  focused on **Machine Learning**, **Natural Language Processing**, and applied AI systems. 
+                  I am a B.Tech student in Computer Science at <span className="font-semibold text-foreground">Thapar Institute of Engineering and Technology</span>, 
+                  focused on <span className="font-semibold text-foreground">Machine Learning</span>, <span className="font-semibold text-foreground">Natural Language Processing</span>, and applied AI systems. 
                   My work centers on building practical solutions that combine solid engineering with modern machine learning techniques.
                 </p>
                 <p>
-                  I have developed projects involving **semantic search**, **medical recommendation systems**, 
-                  and **intelligent research automation**. These projects emphasize **clean architecture**, 
-                  **reproducible workflows**, and real-world usability rather than experimental prototypes.
+                  I have developed projects involving <span className="font-semibold text-foreground">semantic search</span>, <span className="font-semibold text-foreground">medical recommendation systems</span>, 
+                  and <span className="font-semibold text-foreground">intelligent research automation</span>. These projects emphasize <span className="font-semibold text-foreground">clean architecture</span>, 
+                  <span className="font-semibold text-foreground">reproducible workflows</span>, and real-world usability rather than experimental prototypes.
                 </p>
                 <p>
-                  Currently, I am strengthening my foundation in **Data Structures, Algorithms**, and 
-                  **Machine Learning fundamentals** while preparing for **GATE 2027**. I am actively seeking internship opportunities where I can contribute to real systems and learn from experienced engineers.
+                  Currently, I am strengthening my foundation in <span className="font-semibold text-foreground">Data Structures, Algorithms</span>, and 
+                  <span className="font-semibold text-foreground">Machine Learning fundamentals</span> while preparing for <span className="font-semibold text-primary">GATE 2027</span>. I am actively seeking internship opportunities where I can contribute to real systems and learn from experienced engineers.
                 </p>
               </div>
 
@@ -74,6 +74,25 @@ export default function AboutPage() {
 
             {/* Sidebar Info */}
             <div className="space-y-6">
+              
+              {/* Profile Image Card */}
+              <div className="relative group overflow-hidden rounded-2xl border border-border/50 bg-card p-2 flex justify-center items-end h-64 sm:h-72 transition-colors duration-500 shadow-sm">
+                {/* LIGHT MODE BACKGROUND */}
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-100 dark:opacity-0 transition-opacity duration-500" />
+                
+                {/* DARK MODE BACKGROUND */}
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-transparent opacity-0 dark:opacity-50 group-hover:dark:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-primary/30 blur-[60px] rounded-full opacity-0 dark:opacity-100" />
+                
+                {/* Your Transparent Photo */}
+                <img 
+                  src="/samarth-transparent.png" 
+                  alt="Samarth Pandey"
+                  className="relative z-10 object-contain w-full h-[110%] transition-transform duration-700 group-hover:scale-105 drop-shadow-xl dark:drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]"
+                  style={{ objectPosition: 'bottom center' }}
+                />
+              </div>
+
               {/* Quick Info Card */}
               <div className="rounded-2xl border border-border/50 bg-card p-7 space-y-4 shadow-sm">
                 <h3 className="text-lg font-semibold text-foreground mb-2">Quick Info</h3>
