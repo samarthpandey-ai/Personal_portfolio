@@ -12,7 +12,7 @@ const skills = [
       iconText: "text-blue-500 dark:text-blue-400",
       iconBgActive: "bg-blue-500/10",
       titleHover: "group-hover:text-blue-600 dark:group-hover:text-blue-400",
-      glow: "from-blue-100/80 dark:from-blue-500/15",
+      glow: "from-blue-100/80 dark:from-blue-500/20", // Increased dark mode base glow slightly
       borderActive: "border-blue-500/60 dark:border-blue-400/60 shadow-[0_0_30px_rgba(59,130,246,0.15)]",
       tagActive: "border-blue-500/40 bg-blue-500/10 text-blue-700 dark:text-blue-300",
     },
@@ -28,7 +28,7 @@ const skills = [
       iconText: "text-purple-500 dark:text-purple-400",
       iconBgActive: "bg-purple-500/10",
       titleHover: "group-hover:text-purple-600 dark:group-hover:text-purple-400",
-      glow: "from-purple-100/80 dark:from-purple-500/15",
+      glow: "from-purple-100/80 dark:from-purple-500/20",
       borderActive: "border-purple-500/60 dark:border-purple-400/60 shadow-[0_0_30px_rgba(168,85,247,0.15)]",
       tagActive: "border-purple-500/40 bg-purple-500/10 text-purple-700 dark:text-purple-300",
     },
@@ -45,7 +45,7 @@ const skills = [
       iconText: "text-orange-500 dark:text-orange-400",
       iconBgActive: "bg-orange-500/10",
       titleHover: "group-hover:text-orange-600 dark:group-hover:text-orange-400",
-      glow: "from-orange-100/80 dark:from-orange-500/15",
+      glow: "from-orange-100/80 dark:from-orange-500/20",
       borderActive: "border-orange-500/60 dark:border-orange-400/60 shadow-[0_0_30px_rgba(249,115,22,0.15)]",
       tagActive: "border-orange-500/40 bg-orange-500/10 text-orange-700 dark:text-orange-300",
     },
@@ -62,7 +62,7 @@ const skills = [
       iconText: "text-amber-500 dark:text-amber-400",
       iconBgActive: "bg-amber-500/10",
       titleHover: "group-hover:text-amber-600 dark:group-hover:text-amber-400",
-      glow: "from-amber-100/80 dark:from-amber-500/15",
+      glow: "from-amber-100/80 dark:from-amber-500/20",
       borderActive: "border-amber-500/60 dark:border-amber-400/60 shadow-[0_0_30px_rgba(245,158,11,0.15)]",
       tagActive: "border-amber-500/40 bg-amber-500/10 text-amber-700 dark:text-amber-300",
     },
@@ -79,7 +79,7 @@ const skills = [
       iconText: "text-emerald-500 dark:text-emerald-400",
       iconBgActive: "bg-emerald-500/10",
       titleHover: "group-hover:text-emerald-600 dark:group-hover:text-emerald-400",
-      glow: "from-emerald-100/80 dark:from-emerald-500/15",
+      glow: "from-emerald-100/80 dark:from-emerald-500/20",
       borderActive: "border-emerald-500/60 dark:border-emerald-400/60 shadow-[0_0_30px_rgba(16,185,129,0.15)]",
       tagActive: "border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
     },
@@ -95,7 +95,7 @@ const skills = [
       iconText: "text-rose-500 dark:text-rose-400",
       iconBgActive: "bg-rose-500/10",
       titleHover: "group-hover:text-rose-600 dark:group-hover:text-rose-400",
-      glow: "from-rose-100/80 dark:from-rose-500/15",
+      glow: "from-rose-100/80 dark:from-rose-500/20",
       borderActive: "border-rose-500/60 dark:border-rose-400/60 shadow-[0_0_30px_rgba(244,63,94,0.15)]",
       tagActive: "border-rose-500/40 bg-rose-500/10 text-rose-700 dark:text-rose-300",
     },
@@ -144,9 +144,9 @@ export function TechStack() {
                   } backdrop-blur-md`}
               >
                 {/* THE GLOW EFFECT 
-                  Hidden by default (opacity-0). Appears on hover or when clicked. 
+                  Visible slightly all the time (opacity-20 in dark mode), brightens on hover/click.
                 */}
-                <div className={`absolute inset-0 pointer-events-none transition-opacity duration-500 bg-gradient-to-br to-transparent ${skill.styles.glow} ${isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
+                <div className={`absolute inset-0 pointer-events-none transition-opacity duration-500 bg-gradient-to-br to-transparent ${skill.styles.glow} ${isSelected ? 'opacity-100' : 'opacity-20 dark:opacity-30 group-hover:opacity-100'}`} />
 
                 {/* Checkmark icon for active state */}
                 <div className={`absolute top-6 right-6 h-5 w-5 transition-all duration-500 ${isSelected ? "opacity-100 scale-100" : "opacity-0 scale-50"}`}>
@@ -174,13 +174,14 @@ export function TechStack() {
                         className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg border text-[13px] font-semibold transition-colors duration-300
                           ${isSelected 
                             ? skill.styles.tagActive 
-                            : 'border-border/50 bg-background/50 text-muted-foreground group-hover:border-border group-hover:text-foreground'
+                            : 'border-border/50 bg-background/50 text-foreground group-hover:border-border'
                           }`}
                       >
                         {item.logo ? (
-                          <img src={item.logo} alt={item.name} className="h-4 w-4 object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />
+                          // REMOVED grayscale class here! Logos will always be colored now.
+                          <img src={item.logo} alt={item.name} className="h-4 w-4 object-contain opacity-90 group-hover:opacity-100 transition-all duration-300" />
                         ) : (
-                          <Zap className={`h-3.5 w-3.5 ${isSelected ? skill.styles.iconText : 'text-muted-foreground group-hover:text-foreground'}`} />
+                          <Zap className={`h-3.5 w-3.5 ${isSelected ? skill.styles.iconText : 'text-primary/70 group-hover:text-primary'}`} />
                         )}
                         {item.name}
                       </div>
