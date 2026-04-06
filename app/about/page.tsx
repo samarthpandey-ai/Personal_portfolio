@@ -1,6 +1,7 @@
 "use client"
 
-import Image from "next/image" // <-- IMPORT ADDED HERE FOR INSTANT IMAGE LOADING
+import { useState } from "react"
+import Image from "next/image"
 
 //import { JourneyTimeline } from "@/components/journey-timeline"
 // Note: I left the import here just in case, but it's commented out at the bottom!
@@ -8,9 +9,22 @@ import { SkillsSection } from "@/components/skills-section"
 //import { GoalsSection } from "@/components/goals-section"
 import { ContactWidget } from "@/components/contact-widget"
 import { TechStack } from "@/components/tech-stack" 
-import { MapPin, GraduationCap, Sparkles, Download, Briefcase, Github, Linkedin, Twitter, Mail } from "lucide-react"
+import { MapPin, GraduationCap, Sparkles, Download, Briefcase, Github, Linkedin, Mail, Copy, X } from "lucide-react"
 
 export default function AboutPage() {
+  const [emailCopied, setEmailCopied] = useState(false);
+  const emailId = "samarth.ai.official@gmail.com";
+
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000); // Reset feedback after 2 seconds
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  };
+
   return (
     <div className="pt-20">
       {/* Hero Section */}
@@ -41,22 +55,21 @@ export default function AboutPage() {
               </div>
 
               <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                {/* === REFINED AND UPDATED BIO TEXT === */}
                 <p>
                   I am a B.Tech student in Computer Science at{" "}
                   <span className="font-semibold text-foreground">
                     Thapar Institute of Engineering and Technology
                   </span>
-                  , focused on{" "}
+                  , with a strong focus on{" "}
                   <span className="font-semibold text-foreground">Machine Learning</span>,{" "}
-                  <span className="font-semibold text-foreground">
-                    Natural Language Processing
-                  </span>
-                  , and applied AI systems. I build software that combines machine learning
-                  with clean, reliable implementation.
+                  <span className="font-semibold text-foreground">Natural Language Processing</span>, 
+                  and applied AI systems. I build software that combines modern machine learning principles 
+                  with clean, reliable engineering practices.
                 </p>
 
                 <p>
-                  I have worked on{" "}
+                  I have worked on practical projects involving{" "}
                   <span className="font-semibold text-foreground">semantic search</span>,{" "}
                   <span className="font-semibold text-foreground">
                     medical recommendation systems
@@ -65,8 +78,8 @@ export default function AboutPage() {
                   <span className="font-semibold text-foreground">
                     intelligent research automation
                   </span>
-                  . My projects focus on data pipelines, model integration, and interfaces
-                  that make AI systems usable in practice.
+                  . My work focuses on constructing robust data pipelines, model integration, 
+                  and user interfaces that make AI systems usable and impactful in real-world scenarios.
                 </p>
 
                 <p>
@@ -76,10 +89,9 @@ export default function AboutPage() {
                   </span>{" "}
                   and{" "}
                   <span className="font-semibold text-foreground">
-                    Machine Learning fundamentals
-                  </span>
-                  while preparing for internship roles. I am looking for opportunities to
-                  work on real codebases and build stronger engineering skills.
+                    Machine Learning fundamentals</span>, while actively seeking internship roles. 
+                  I am eager to contribute to real-world codebases and build stronger software 
+                  engineering and applied ML skills.
                 </p>
               </div>
 
@@ -87,7 +99,7 @@ export default function AboutPage() {
               <div className="flex flex-wrap items-center gap-4 pt-4">
                 <div className="w-full sm:w-auto min-w-[200px]">
                   <ContactWidget 
-                    email="samarth.ai.official@gmail.com" 
+                    email={emailId} 
                     label="Get in Touch" 
                     className="py-4"
                   />
@@ -103,47 +115,57 @@ export default function AboutPage() {
                 </a>
               </div>
 
-              {/* === NEW SOCIAL LINKS SECTION === */}
-              <div className="pt-8 mt-8 border-t border-border/40">
-                <p className="text-sm font-medium text-muted-foreground mb-4">Find me online</p>
-                <div className="flex flex-wrap gap-3">
+              {/* === UPDATED SOCIAL LINKS SECTION WITH COLOR AND X UPDATE === */}
+              <div className="pt-10 mt-10 border-t border-border/30">
+                <h4 className="text-xl font-semibold text-foreground mb-6 tracking-tight">Connect with me online</h4>
+                <div className="flex flex-wrap gap-4">
+                  {/* Colored GitHub link */}
                   <a 
                     href="https://github.com/samarthkrpandey" 
                     target="_blank" 
                     rel="noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-full border border-border/50 bg-secondary/20 text-sm font-medium text-muted-foreground transition-all hover:text-foreground hover:bg-secondary/60 hover:border-border dark:hover:border-white/20"
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-border/50 bg-secondary/15 text-sm font-medium text-muted-foreground transition-all hover:text-foreground hover:bg-secondary/40 hover:border-border dark:hover:border-white/20"
                   >
                     <Github className="h-4 w-4" />
                     GitHub
                   </a>
                   
+                  {/* Colored LinkedIn link */}
                   <a 
                     href="https://linkedin.com/in/samarthkrpandey" 
                     target="_blank" 
                     rel="noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-full border border-border/50 bg-secondary/20 text-sm font-medium text-muted-foreground transition-all hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-500/10 hover:border-blue-500/30"
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-border/50 bg-blue-50/50 dark:bg-blue-950/20 text-sm font-medium text-blue-600 dark:text-blue-400 transition-all hover:bg-blue-100/60 dark:hover:bg-blue-900/30 hover:border-blue-500/30"
                   >
                     <Linkedin className="h-4 w-4" />
                     LinkedIn
                   </a>
 
+                  {/* Colored X (formerly Twitter) link */}
                   <a 
                     href="https://twitter.com/samarthkrpandey" 
                     target="_blank" 
                     rel="noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-full border border-border/50 bg-secondary/20 text-sm font-medium text-muted-foreground transition-all hover:text-sky-500 hover:bg-sky-500/10 hover:border-sky-500/30"
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-border/50 bg-zinc-100/60 dark:bg-zinc-900/40 text-sm font-medium text-zinc-950 dark:text-zinc-50 transition-all hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:border-zinc-400/30 dark:hover:border-zinc-700"
                   >
-                    <Twitter className="h-4 w-4" />
-                    Twitter
+                    <X className="h-4 w-4" />
+                    X (formerly Twitter)
                   </a>
 
-                  <a 
-                    href="mailto:samarth.ai.official@gmail.com" 
-                    className="flex items-center gap-2 px-4 py-2 rounded-full border border-border/50 bg-secondary/20 text-sm font-medium text-muted-foreground transition-all hover:text-primary hover:bg-primary/10 hover:border-primary/30"
+                  {/* Colored INTERACTIVE Email Copy button with feedback */}
+                  <button 
+                    onClick={() => copyToClipboard(emailId)}
+                    className="relative group flex items-center gap-2 px-4 py-2.5 rounded-full border border-border/50 bg-primary/5 text-sm font-medium text-primary transition-all hover:bg-primary/10 hover:border-primary/30"
                   >
                     <Mail className="h-4 w-4" />
-                    Email
-                  </a>
+                    {emailId}
+                    <Copy className="h-3 w-3 text-primary/60 group-hover:text-primary transition-colors" />
+                    {emailCopied && (
+                      <span className="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-md shadow-lg dark:bg-green-900 dark:text-green-100 whitespace-nowrap animate-in fade-in slide-in-from-left-2">
+                        Copied!
+                      </span>
+                    )}
+                  </button>
                 </div>
               </div>
               {/* === END SOCIAL LINKS SECTION === */}
@@ -153,7 +175,7 @@ export default function AboutPage() {
             {/* Sidebar Info (Right Side) */}
             <div className="space-y-6">
               
-              {/* === UPDATED PROFILE IMAGE CARD (Fixes the loading glitch) === */}
+              {/* Profile Image Card */}
               <div className="relative overflow-hidden rounded-2xl border border-border/50 bg-card shadow-sm aspect-square sm:aspect-[4/3] group">
                 <Image 
                   src="/samarth-profile_pic.jpg" 
@@ -212,17 +234,21 @@ export default function AboutPage() {
         </div> {/* Container closing */}
       </section>
 
-      {/* === YOUR NEW TECH STACK IS HERE === */}
+      {/* === TECH STACK === */}
       <TechStack />
 
-      {/* === YOUR JOURNEY TIMELINE === 
-      <JourneyTimeline /> */}
+      {/*JourneyTimeline commented */}
+      {/*journey-timeline.tsx commented below as per the final instruction block */}
+      {/* <JourneyTimeline />
+      */}
       
-      {/* Note: I commented out the old SkillsSection so you don't have duplicate sections. 
-          If you still want it, just remove the comment markers below. */}
+      {/* skills-section commented */}
       {/* <SkillsSection /> 
+      */}
 
-      <GoalsSection />*/}
+      {/* goals-section commented */}
+      {/* <GoalsSection />
+      */}
     </div>
   )
 }
