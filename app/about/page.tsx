@@ -1,11 +1,13 @@
 "use client"
 
+import Image from "next/image" // <-- IMPORT ADDED HERE FOR INSTANT IMAGE LOADING
+
 //import { JourneyTimeline } from "@/components/journey-timeline"
 // Note: I left the import here just in case, but it's commented out at the bottom!
 import { SkillsSection } from "@/components/skills-section" 
 //import { GoalsSection } from "@/components/goals-section"
 import { ContactWidget } from "@/components/contact-widget"
-import { TechStack } from "@/components/tech-stack" // <-- YOUR NEW COMPONENT IMPORTED HERE
+import { TechStack } from "@/components/tech-stack" 
 import { MapPin, GraduationCap, Sparkles, Download, Briefcase } from "lucide-react"
 
 export default function AboutPage() {
@@ -31,9 +33,10 @@ export default function AboutPage() {
                   About Me
                 </div>
                 
+                {/* === UPDATED HEADLINE === */}
                 <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-                  Building Intelligence <br />
-                  <span className="text-gradient">with Purpose</span>
+                  Engineering Models. <br />
+                  <span className="text-gradient">Building Systems.</span>
                 </h1>
               </div>
 
@@ -106,12 +109,15 @@ export default function AboutPage() {
             {/* Sidebar Info (Right Side) */}
             <div className="space-y-6">
               
-              {/* Profile Image Card */}
+              {/* === UPDATED PROFILE IMAGE CARD (Fixes the loading glitch) === */}
               <div className="relative overflow-hidden rounded-2xl border border-border/50 bg-card shadow-sm aspect-square sm:aspect-[4/3] group">
-                <img 
+                <Image 
                   src="/samarth-profile_pic.jpg" 
                   alt="Samarth Pandey"
-                  className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                   style={{ objectPosition: 'center 20%' }} 
                 />
                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/90 to-transparent pointer-events-none" />
