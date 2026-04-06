@@ -86,7 +86,7 @@ export default function AboutPage() {
                 
                 {/* Your Transparent Photo */}
                 <img 
-                  src="/samarth-transparent.png" 
+                  src="/samarth-profile_pic.jpg" 
                   alt="Samarth Pandey"
                   className="relative z-10 object-contain w-full h-[110%] transition-transform duration-700 group-hover:scale-105 drop-shadow-xl dark:drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]"
                   style={{ objectPosition: 'bottom center' }}
