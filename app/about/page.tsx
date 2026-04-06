@@ -134,7 +134,7 @@ export default function AboutPage() {
               </div>
 
               {/* Languages Card */}
-              <div className="rounded-2xl border border-border/50 bg-card p-7 shadow-sm">
+              {/*  <div className="rounded-2xl border border-border/50 bg-card p-7 shadow-sm">
                 <h3 className="text-lg font-semibold text-foreground mb-5">Languages</h3>
                 <div className="space-y-4">
                   {[
@@ -159,7 +159,7 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-        </div>
+        </div>*/}
       </section>
 
       <JourneyTimeline />
