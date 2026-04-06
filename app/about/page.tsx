@@ -39,18 +39,46 @@ export default function AboutPage() {
 
               <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-2xl">
                 <p>
-                  I am a B.Tech student in Computer Science at <span className="font-semibold text-foreground">Thapar Institute of Engineering and Technology</span>, 
-                  focused on <span className="font-semibold text-foreground">Machine Learning</span>, <span className="font-semibold text-foreground">Natural Language Processing</span>, and applied AI systems. 
-                  My work centers on building practical solutions that combine solid engineering with modern machine learning techniques.
+                  I am a B.Tech student in Computer Science at{" "}
+                  <span className="font-semibold text-foreground">
+                    Thapar Institute of Engineering and Technology
+                  </span>
+                  , focused on{" "}
+                  <span className="font-semibold text-foreground">Machine Learning</span>,{" "}
+                  <span className="font-semibold text-foreground">
+                    Natural Language Processing
+                  </span>
+                  , and applied AI systems. My work centers on building practical solutions
+                  that combine solid engineering with modern machine learning techniques.
                 </p>
+
                 <p>
-                  I have developed projects involving <span className="font-semibold text-foreground">semantic search</span>, <span className="font-semibold text-foreground">medical recommendation systems</span>, 
-                  and <span className="font-semibold text-foreground">intelligent research automation</span>. These projects emphasize <span className="font-semibold text-foreground">clean architecture</span>, 
-                  <span className="font-semibold text-foreground">reproducible workflows</span>, and real-world usability rather than experimental prototypes.
+                  I have developed projects involving{" "}
+                  <span className="font-semibold text-foreground">semantic search</span>,{" "}
+                  <span className="font-semibold text-foreground">
+                    medical recommendation systems
+                  </span>
+                  , and{" "}
+                  <span className="font-semibold text-foreground">
+                    intelligent research automation
+                  </span>
+                  . These projects emphasize{" "}
+                  <span className="font-semibold text-foreground">clean architecture</span>,{" "}
+                  <span className="font-semibold text-foreground">reproducible workflows</span>
+                  , and real-world usability rather than experimental prototypes.
                 </p>
+
                 <p>
-                  Currently, I am strengthening my foundation in <span className="font-semibold text-foreground">Data Structures, Algorithms</span>, and 
-                  <span className="font-semibold text-foreground">Machine Learning fundamentals</span> while preparing for <span className="font-semibold text-primary">GATE 2027</span>. I am actively seeking internship opportunities where I can contribute to real systems and learn from experienced engineers.
+                  Currently, I am deepening my foundation in{" "}
+                  <span className="font-semibold text-foreground">
+                    Data Structures, Algorithms
+                  </span>{" "}
+                  and{" "}
+                  <span className="font-semibold text-foreground">
+                    Machine Learning fundamentals
+                  </span>
+                  . I am actively seeking internship opportunities where I can apply my
+                  skills to real-world systems and grow alongside experienced engineers.
                 </p>
               </div>
 
@@ -141,7 +169,7 @@ export default function AboutPage() {
       <JourneyTimeline /> */}
       
       {/* Note: I commented out the old SkillsSection so you don't have duplicate sections. 
-          If you still want it, just remove the {/* and */}
+          If you still want it, just remove the comment markers below. */}
       {/* <SkillsSection /> 
 
       <GoalsSection />*/}
