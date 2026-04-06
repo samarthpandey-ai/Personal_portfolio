@@ -9,9 +9,11 @@ import { SkillsSection } from "@/components/skills-section"
 //import { GoalsSection } from "@/components/goals-section"
 import { ContactWidget } from "@/components/contact-widget"
 import { TechStack } from "@/components/tech-stack" 
-import { MapPin, GraduationCap, Sparkles, Download, Briefcase, Github, Linkedin, Mail, Copy, X } from "lucide-react"
+import { MapPin, GraduationCap, Sparkles, Download, Briefcase, Github, Linkedin, Copy } from "lucide-react"
 
 export default function AboutPage() {
+  // 1. Initialized state for email popup and copied feedback
+  const [isEmailPopupVisible, setIsEmailPopupVisible] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
   const emailId = "samarth.ai.official@gmail.com";
 
@@ -23,6 +25,14 @@ export default function AboutPage() {
     } catch (err) {
       console.error('Failed to copy text: ', err);
     }
+  };
+
+  const handleEmailClick = () => {
+    setIsEmailPopupVisible(true);
+    // 2. Setting a time limit (5 seconds) before popup disappears
+    setTimeout(() => {
+      setIsEmailPopupVisible(false);
+    }, 5000);
   };
 
   return (
@@ -55,13 +65,12 @@ export default function AboutPage() {
               </div>
 
               <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-2xl">
-                {/* === REFINED AND UPDATED BIO TEXT === */}
                 <p>
                   I am a B.Tech student in Computer Science at{" "}
                   <span className="font-semibold text-foreground">
                     Thapar Institute of Engineering and Technology
                   </span>
-                  , with a strong focus on{" "}
+                  , focused on{" "}
                   <span className="font-semibold text-foreground">Machine Learning</span>,{" "}
                   <span className="font-semibold text-foreground">Natural Language Processing</span>, 
                   and applied AI systems. I build software that combines modern machine learning principles 
@@ -69,7 +78,7 @@ export default function AboutPage() {
                 </p>
 
                 <p>
-                  I have worked on practical projects involving{" "}
+                  I have developed projects involving{" "}
                   <span className="font-semibold text-foreground">semantic search</span>,{" "}
                   <span className="font-semibold text-foreground">
                     medical recommendation systems
@@ -78,20 +87,20 @@ export default function AboutPage() {
                   <span className="font-semibold text-foreground">
                     intelligent research automation
                   </span>
-                  . My work focuses on constructing robust data pipelines, model integration, 
-                  and user interfaces that make AI systems usable and impactful in real-world scenarios.
+                  . These projects emphasize{" "}
+                  <span className="font-semibold text-foreground">clean architecture</span>,{" "}
+                  <span className="font-semibold text-foreground">reproducible workflows</span>, 
+                  and real-world usability rather than experimental prototypes.
                 </p>
 
                 <p>
-                  Currently, I am strengthening my foundation in{" "}
+                  Currently, I am deepening my foundation in{" "}
                   <span className="font-semibold text-foreground">
-                    Data Structures and Algorithms
-                  </span>{" "}
-                  and{" "}
+                    Data Structures, Algorithms</span>, and{" "}
                   <span className="font-semibold text-foreground">
-                    Machine Learning fundamentals</span>, while actively seeking internship roles. 
-                  I am eager to contribute to real-world codebases and build stronger software 
-                  engineering and applied ML skills.
+                    Machine Learning fundamentals</span> while preparing for GATE 2027. I am actively seeking 
+                    internship opportunities where I can apply my skills to real-world systems and grow alongside 
+                    experienced engineers.
                 </p>
               </div>
 
@@ -115,10 +124,11 @@ export default function AboutPage() {
                 </a>
               </div>
 
-              {/* === UPDATED SOCIAL LINKS SECTION WITH COLOR AND X UPDATE === */}
+              {/* === NEW SOCIAL LINKS SECTION WITH COLOR AND DYNAMIC POPUP LOGIC === */}
               <div className="pt-10 mt-10 border-t border-border/30">
                 <h4 className="text-xl font-semibold text-foreground mb-6 tracking-tight">Connect with me online</h4>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-4 relative">
+                  
                   {/* Colored GitHub link */}
                   <a 
                     href="https://github.com/samarthkrpandey" 
@@ -141,31 +151,44 @@ export default function AboutPage() {
                     LinkedIn
                   </a>
 
-                  {/* Colored X (formerly Twitter) link */}
+                  {/* 3. Updated X logo & text: Colored link with official X logo */}
                   <a 
                     href="https://twitter.com/samarthkrpandey" 
                     target="_blank" 
                     rel="noreferrer"
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-border/50 bg-zinc-100/60 dark:bg-zinc-900/40 text-sm font-medium text-zinc-950 dark:text-zinc-50 transition-all hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:border-zinc-400/30 dark:hover:border-zinc-700"
+                    className="flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-border/50 bg-zinc-100/60 dark:bg-zinc-900/40 text-sm font-medium text-zinc-950 dark:text-zinc-50 transition-all hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:border-zinc-400/30 dark:hover:border-zinc-700"
                   >
-                    <X className="h-4 w-4" />
+                    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.25 2.25h6.763l4.717 6.176 5.514-6.176zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"></path></svg>
                     X (formerly Twitter)
                   </a>
 
-                  {/* Colored INTERACTIVE Email Copy button with feedback */}
+                  {/* 4. Interactive Email Popup Button with multi-color Gmail icon */}
                   <button 
-                    onClick={() => copyToClipboard(emailId)}
-                    className="relative group flex items-center gap-2 px-4 py-2.5 rounded-full border border-border/50 bg-primary/5 text-sm font-medium text-primary transition-all hover:bg-primary/10 hover:border-primary/30"
+                    onClick={handleEmailClick}
+                    className="relative flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-border/50 bg-zinc-100/60 dark:bg-zinc-900/40 text-sm font-medium transition-all hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:border-border"
                   >
-                    <Mail className="h-4 w-4" />
-                    {emailId}
-                    <Copy className="h-3 w-3 text-primary/60 group-hover:text-primary transition-colors" />
-                    {emailCopied && (
-                      <span className="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-md shadow-lg dark:bg-green-900 dark:text-green-100 whitespace-nowrap animate-in fade-in slide-in-from-left-2">
-                        Copied!
-                      </span>
-                    )}
+                    {/* Multi-color Gmail icon */}
+                    <svg viewBox="0 0 24 24" className="h-4 w-4 object-contain"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="#DB4437"></path><path d="M0 0h24v24H0z" fill="none"></path><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5V6l8 5 8-5v2z" fill="#4285F4"></path><path d="M24 0h-24v24h24v-24z" fill="none"></path><path d="M12 13l8-5v-2l-8 5-8-5v2l8 5z" fill="#F4B400"></path><path d="M24 0h-24v24h24v-24z" fill="none"></path><path d="M4 6v12h16v-12l-8 5-8-5z" fill="#0F9D58"></path></svg>
+                    Email
                   </button>
+                  
+                  {/* 5. Dynamic Email Popup Component (conditionally rendered) */}
+                  {isEmailPopupVisible && (
+                    <div className="absolute left-full top-1/2 -translate-y-1/2 ml-4 px-6 py-5 min-w-[320px] rounded-2xl border border-border/80 bg-background/95 shadow-2xl backdrop-blur-md z-50 animate-in fade-in slide-in-from-left-2 duration-300">
+                      <p className="text-xs text-muted-foreground mb-2">My official email</p>
+                      <p className="text-sm font-semibold text-foreground font-mono mb-4 break-all">{emailId}</p>
+                      <div className="flex justify-end">
+                        <button 
+                          onClick={() => copyToClipboard(emailId)}
+                          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${emailCopied ? 'bg-green-500/15 text-green-700 dark:text-green-300' : 'bg-primary/10 text-primary hover:bg-primary/20'}`}
+                        >
+                          <Copy className="h-3.5 w-3.5" />
+                          {emailCopied ? 'Copied!' : 'Copy to Clipboard'}
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
                 </div>
               </div>
               {/* === END SOCIAL LINKS SECTION === */}
