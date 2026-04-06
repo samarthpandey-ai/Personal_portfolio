@@ -3,7 +3,7 @@
 //import { JourneyTimeline } from "@/components/journey-timeline"
 // Note: I left the import here just in case, but it's commented out at the bottom!
 import { SkillsSection } from "@/components/skills-section" 
-import { GoalsSection } from "@/components/goals-section"
+//import { GoalsSection } from "@/components/goals-section"
 import { ContactWidget } from "@/components/contact-widget"
 import { TechStack } from "@/components/tech-stack" // <-- YOUR NEW COMPONENT IMPORTED HERE
 import { MapPin, GraduationCap, Sparkles, Download, Briefcase } from "lucide-react"
@@ -142,9 +142,9 @@ export default function AboutPage() {
       
       {/* Note: I commented out the old SkillsSection so you don't have duplicate sections. 
           If you still want it, just remove the {/* and */}
-      {/* <SkillsSection /> */} 
+      {/* <SkillsSection /> 
 
-      <GoalsSection />
+      <GoalsSection />*/}
     </div>
   )
 }
