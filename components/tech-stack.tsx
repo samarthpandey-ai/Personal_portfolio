@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Code2, Brain, Network, Database, Terminal, Zap, CheckCircle2, Cpu } from "lucide-react"
 
-// Explicit Tailwind classes are required so the compiler doesn't strip them out in Dark Mode!
+// Explicit Tailwind classes to ensure Dark Mode borders and outer glows work perfectly
 const skills = [
   {
     category: "Programming",
@@ -11,9 +11,8 @@ const skills = [
     styles: {
       iconText: "text-blue-500 dark:text-blue-400",
       iconBgActive: "bg-blue-500/10",
-      titleHover: "group-hover:text-blue-600 dark:group-hover:text-blue-400",
-      glow: "from-blue-100/80 dark:from-blue-500/20", // Increased dark mode base glow slightly
-      borderActive: "border-blue-500/60 dark:border-blue-400/60 shadow-[0_0_30px_rgba(59,130,246,0.15)]",
+      glowActive: "border-blue-500 dark:border-blue-400 shadow-lg shadow-blue-500/30 dark:shadow-blue-400/30 -translate-y-1",
+      glowHover: "hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg hover:shadow-blue-500/30 dark:hover:shadow-blue-400/30 hover:-translate-y-1",
       tagActive: "border-blue-500/40 bg-blue-500/10 text-blue-700 dark:text-blue-300",
     },
     items: [
@@ -27,9 +26,8 @@ const skills = [
     styles: {
       iconText: "text-purple-500 dark:text-purple-400",
       iconBgActive: "bg-purple-500/10",
-      titleHover: "group-hover:text-purple-600 dark:group-hover:text-purple-400",
-      glow: "from-purple-100/80 dark:from-purple-500/20",
-      borderActive: "border-purple-500/60 dark:border-purple-400/60 shadow-[0_0_30px_rgba(168,85,247,0.15)]",
+      glowActive: "border-purple-500 dark:border-purple-400 shadow-lg shadow-purple-500/30 dark:shadow-purple-400/30 -translate-y-1",
+      glowHover: "hover:border-purple-500 dark:hover:border-purple-400 hover:shadow-lg hover:shadow-purple-500/30 dark:hover:shadow-purple-400/30 hover:-translate-y-1",
       tagActive: "border-purple-500/40 bg-purple-500/10 text-purple-700 dark:text-purple-300",
     },
     items: [
@@ -44,9 +42,8 @@ const skills = [
     styles: {
       iconText: "text-orange-500 dark:text-orange-400",
       iconBgActive: "bg-orange-500/10",
-      titleHover: "group-hover:text-orange-600 dark:group-hover:text-orange-400",
-      glow: "from-orange-100/80 dark:from-orange-500/20",
-      borderActive: "border-orange-500/60 dark:border-orange-400/60 shadow-[0_0_30px_rgba(249,115,22,0.15)]",
+      glowActive: "border-orange-500 dark:border-orange-400 shadow-lg shadow-orange-500/30 dark:shadow-orange-400/30 -translate-y-1",
+      glowHover: "hover:border-orange-500 dark:hover:border-orange-400 hover:shadow-lg hover:shadow-orange-500/30 dark:hover:shadow-orange-400/30 hover:-translate-y-1",
       tagActive: "border-orange-500/40 bg-orange-500/10 text-orange-700 dark:text-orange-300",
     },
     items: [
@@ -61,9 +58,8 @@ const skills = [
     styles: {
       iconText: "text-amber-500 dark:text-amber-400",
       iconBgActive: "bg-amber-500/10",
-      titleHover: "group-hover:text-amber-600 dark:group-hover:text-amber-400",
-      glow: "from-amber-100/80 dark:from-amber-500/20",
-      borderActive: "border-amber-500/60 dark:border-amber-400/60 shadow-[0_0_30px_rgba(245,158,11,0.15)]",
+      glowActive: "border-amber-500 dark:border-amber-400 shadow-lg shadow-amber-500/30 dark:shadow-amber-400/30 -translate-y-1",
+      glowHover: "hover:border-amber-500 dark:hover:border-amber-400 hover:shadow-lg hover:shadow-amber-500/30 dark:hover:shadow-amber-400/30 hover:-translate-y-1",
       tagActive: "border-amber-500/40 bg-amber-500/10 text-amber-700 dark:text-amber-300",
     },
     items: [
@@ -78,9 +74,8 @@ const skills = [
     styles: {
       iconText: "text-emerald-500 dark:text-emerald-400",
       iconBgActive: "bg-emerald-500/10",
-      titleHover: "group-hover:text-emerald-600 dark:group-hover:text-emerald-400",
-      glow: "from-emerald-100/80 dark:from-emerald-500/20",
-      borderActive: "border-emerald-500/60 dark:border-emerald-400/60 shadow-[0_0_30px_rgba(16,185,129,0.15)]",
+      glowActive: "border-emerald-500 dark:border-emerald-400 shadow-lg shadow-emerald-500/30 dark:shadow-emerald-400/30 -translate-y-1",
+      glowHover: "hover:border-emerald-500 dark:hover:border-emerald-400 hover:shadow-lg hover:shadow-emerald-500/30 dark:hover:shadow-emerald-400/30 hover:-translate-y-1",
       tagActive: "border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
     },
     items: [
@@ -94,9 +89,8 @@ const skills = [
     styles: {
       iconText: "text-rose-500 dark:text-rose-400",
       iconBgActive: "bg-rose-500/10",
-      titleHover: "group-hover:text-rose-600 dark:group-hover:text-rose-400",
-      glow: "from-rose-100/80 dark:from-rose-500/20",
-      borderActive: "border-rose-500/60 dark:border-rose-400/60 shadow-[0_0_30px_rgba(244,63,94,0.15)]",
+      glowActive: "border-rose-500 dark:border-rose-400 shadow-lg shadow-rose-500/30 dark:shadow-rose-400/30 -translate-y-1",
+      glowHover: "hover:border-rose-500 dark:hover:border-rose-400 hover:shadow-lg hover:shadow-rose-500/30 dark:hover:shadow-rose-400/30 hover:-translate-y-1",
       tagActive: "border-rose-500/40 bg-rose-500/10 text-rose-700 dark:text-rose-300",
     },
     items: [
@@ -137,36 +131,29 @@ export function TechStack() {
               <div 
                 key={skill.category}
                 onClick={() => setSelectedSkill(isSelected ? null : skill.category)}
-                className={`group relative cursor-pointer overflow-hidden rounded-2xl border transition-all duration-500 p-8 
+                className={`group relative cursor-pointer overflow-hidden rounded-2xl border transition-all duration-300 p-8 bg-card
                   ${isSelected 
-                    ? `bg-white dark:bg-zinc-900 ${skill.styles.borderActive}` 
-                    : "bg-white/60 dark:bg-zinc-900/40 border-border/50 hover:border-border hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-black/50"
-                  } backdrop-blur-md`}
+                    ? skill.styles.glowActive 
+                    : `border-border/50 ${skill.styles.glowHover}`
+                  }`}
               >
-                {/* THE GLOW EFFECT 
-                  Visible slightly all the time (opacity-20 in dark mode), brightens on hover/click.
-                */}
-                <div className={`absolute inset-0 pointer-events-none transition-opacity duration-500 bg-gradient-to-br to-transparent ${skill.styles.glow} ${isSelected ? 'opacity-100' : 'opacity-20 dark:opacity-30 group-hover:opacity-100'}`} />
-
                 {/* Checkmark icon for active state */}
-                <div className={`absolute top-6 right-6 h-5 w-5 transition-all duration-500 ${isSelected ? "opacity-100 scale-100" : "opacity-0 scale-50"}`}>
+                <div className={`absolute top-6 right-6 h-5 w-5 transition-all duration-300 ${isSelected ? "opacity-100 scale-100" : "opacity-0 scale-50"}`}>
                   <CheckCircle2 className={`h-full w-full ${skill.styles.iconText}`} />
                 </div>
 
-                {/* Card Content (z-10 keeps it above the glow) */}
                 <div className="relative z-10">
-                  
                   {/* Category Title & Icon */}
                   <div className="flex items-center gap-4 mb-6">
                     <div className={`p-3 rounded-xl border border-border/50 transition-colors duration-300 ${skill.styles.iconText} ${isSelected ? skill.styles.iconBgActive : 'bg-background/50 group-hover:bg-background/80'}`}>
                       {skill.icon}
                     </div>
-                    <h3 className={`text-xl font-bold tracking-tight transition-colors duration-300 ${isSelected ? skill.styles.iconText : `text-foreground ${skill.styles.titleHover}`}`}>
+                    <h3 className={`text-xl font-bold tracking-tight transition-colors duration-300 ${isSelected ? skill.styles.iconText : 'text-foreground'}`}>
                       {skill.category}
                     </h3>
                   </div>
                   
-                  {/* Skill Pills */}
+                  {/* Skill Pills (Logos are always colored now) */}
                   <div className="flex flex-wrap gap-2.5 mb-5">
                     {skill.items.map((item) => (
                       <div 
@@ -178,8 +165,7 @@ export function TechStack() {
                           }`}
                       >
                         {item.logo ? (
-                          // REMOVED grayscale class here! Logos will always be colored now.
-                          <img src={item.logo} alt={item.name} className="h-4 w-4 object-contain opacity-90 group-hover:opacity-100 transition-all duration-300" />
+                          <img src={item.logo} alt={item.name} className="h-4 w-4 object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
                         ) : (
                           <Zap className={`h-3.5 w-3.5 ${isSelected ? skill.styles.iconText : 'text-primary/70 group-hover:text-primary'}`} />
                         )}
@@ -191,7 +177,7 @@ export function TechStack() {
                   {/* Details Paragraph */}
                   {skill.details && (
                     <div className={`pt-5 border-t transition-colors duration-300 ${isSelected ? 'border-border' : 'border-border/50'}`}>
-                      <p className={`text-xs leading-relaxed italic transition-colors duration-300 ${isSelected ? 'text-foreground/80' : 'text-muted-foreground group-hover:text-foreground/70'}`}>
+                      <p className={`text-xs leading-relaxed italic transition-colors duration-300 ${isSelected ? 'text-foreground/90' : 'text-muted-foreground group-hover:text-foreground/80'}`}>
                         {skill.details}
                       </p>
                     </div>
