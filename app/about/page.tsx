@@ -4,12 +4,11 @@ import { useState } from "react"
 import Image from "next/image"
 
 //import { JourneyTimeline } from "@/components/journey-timeline"
-// Note: I left the import here just in case, but it's commented out at the bottom!
 import { SkillsSection } from "@/components/skills-section" 
 //import { GoalsSection } from "@/components/goals-section"
 import { ContactWidget } from "@/components/contact-widget"
 import { TechStack } from "@/components/tech-stack" 
-import { MapPin, GraduationCap, Sparkles, Download, Briefcase, Github, Linkedin, Copy, X } from "lucide-react"
+import { MapPin, GraduationCap, Sparkles, Download, Briefcase, Copy } from "lucide-react"
 
 export default function AboutPage() {
   const [emailCopied, setEmailCopied] = useState(false);
@@ -28,7 +27,7 @@ export default function AboutPage() {
 
   const handleEmailClick = () => {
     setIsEmailPopupVisible(true);
-    // Setting a time limit (5 seconds) before popup disappears
+    // Disappears automatically after 5 seconds
     setTimeout(() => {
       setIsEmailPopupVisible(false);
     }, 5000);
@@ -56,7 +55,6 @@ export default function AboutPage() {
                   About Me
                 </div>
                 
-                {/* === UPDATED HEADLINE === */}
                 <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
                   Engineering Models. <br />
                   <span className="text-gradient">Building Systems.</span>
@@ -64,7 +62,6 @@ export default function AboutPage() {
               </div>
 
               <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-2xl">
-                {/* === REFINED AND UPDATED BIO TEXT === */}
                 <p>
                   I am a B.Tech student in Computer Science at{" "}
                   <span className="font-semibold text-foreground">
@@ -122,55 +119,54 @@ export default function AboutPage() {
                 </a>
               </div>
 
-              {/* === NEW SOCIAL LINKS SECTION WITH REAL COLOR LOGOS AND INTERACTIVE POPUP === */}
+              {/* === SOCIAL LINKS SECTION WITH REAL BRAND LOGOS === */}
               <div className="pt-10 mt-10 border-t border-border/30">
                 <h4 className="text-xl font-semibold text-foreground mb-6 tracking-tight">Connect with me online</h4>
                 <div className="flex flex-wrap gap-4 relative">
                   
-                  {/* Colored GitHub link (zinc brand-correct gray) */}
+                  {/* REAL GitHub Logo */}
                   <a 
                     href="https://github.com/samarthkrpandey" 
                     target="_blank" 
                     rel="noreferrer"
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-border/50 bg-secondary/15 text-sm font-medium text-muted-foreground transition-all hover:text-foreground hover:bg-secondary/40 hover:border-border dark:hover:border-white/20"
+                    className="flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-border/50 bg-card text-sm font-medium text-foreground transition-all hover:bg-secondary/40 hover:border-border"
                   >
-                    <Github className="h-4 w-4" />
+                    <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" className="h-4 w-4 dark:invert transition-transform hover:scale-110" />
                     GitHub
                   </a>
                   
-                  {/* Colored LinkedIn link (brand blue) */}
+                  {/* REAL LinkedIn Logo */}
                   <a 
                     href="https://linkedin.com/in/samarthkrpandey" 
                     target="_blank" 
                     rel="noreferrer"
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-border/50 bg-blue-50/50 dark:bg-blue-950/20 text-sm font-medium text-blue-600 dark:text-blue-400 transition-all hover:bg-blue-100/60 dark:hover:bg-blue-900/30 hover:border-blue-500/30"
+                    className="flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-border/50 bg-card text-sm font-medium text-foreground transition-all hover:bg-blue-50/50 dark:hover:bg-blue-950/30 hover:border-blue-500/30"
                   >
-                    <Linkedin className="h-4 w-4" />
+                    <img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn" className="h-4 w-4 transition-transform hover:scale-110" />
                     LinkedIn
                   </a>
 
-                  {/* Colored X (formerly Twitter) link (brand black) */}
+                  {/* REAL X (Twitter) Logo */}
                   <a 
                     href="https://twitter.com/samarthkrpandey" 
                     target="_blank" 
                     rel="noreferrer"
-                    className="flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-border/50 bg-zinc-100/60 dark:bg-zinc-900/40 text-sm font-medium text-zinc-950 dark:text-zinc-50 transition-all hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:border-zinc-400/30 dark:hover:border-zinc-700 group"
+                    className="flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-border/50 bg-card text-sm font-medium text-foreground transition-all hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:border-zinc-400/30"
                   >
-                    <X className="h-4 w-4 text-zinc-950 dark:text-zinc-50 transition-colors group-hover:text-black dark:group-hover:text-white" />
+                    <img src="https://cdn.simpleicons.org/x/000000" alt="X" className="h-3.5 w-3.5 dark:invert transition-transform hover:scale-110" />
                     X (formerly Twitter)
                   </a>
 
-                  {/* INTERACTIVE Email Copy button: Shows only icon, pops up a separate component on click */}
+                  {/* REAL Gmail Logo - Triggers Interactive Popup */}
                   <button 
                     onClick={handleEmailClick}
-                    className="relative flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-border/50 bg-primary/5 text-sm font-medium text-primary transition-all hover:bg-primary/10 hover:border-primary/30"
+                    className="relative flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-border/50 bg-card text-sm font-medium text-foreground transition-all hover:bg-red-50 dark:hover:bg-red-950/20 hover:border-red-500/30"
                   >
-                    {/* Multi-color Gmail icon SVG */}
-                    <svg viewBox="0 0 24 24" className="h-4 w-4 object-contain"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="#DB4437"></path><path d="M0 0h24v24H0z" fill="none"></path><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5V6l8 5 8-5v2z" fill="#4285F4"></path><path d="M24 0h-24v24h24v-24z" fill="none"></path><path d="M12 13l8-5v-2l-8 5-8-5v2l8 5z" fill="#F4B400"></path><path d="M24 0h-24v24h24v-24z" fill="none"></path><path d="M4 6v12h16v-12l-8 5-8-5z" fill="#0F9D58"></path></svg>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Gmail" className="h-3.5 w-3.5 object-contain transition-transform hover:scale-110" />
                     Email
                   </button>
                   
-                  {/* Conditional rendered popup for email copying (automatically disappears after 5s) */}
+                  {/* Interactive Popup Component */}
                   {isEmailPopupVisible && (
                     <div className="absolute left-full top-1/2 -translate-y-1/2 ml-4 px-6 py-5 min-w-[320px] rounded-2xl border border-border/80 bg-background/95 shadow-2xl backdrop-blur-md z-50 animate-in fade-in slide-in-from-left-2 duration-300">
                       <p className="text-xs text-muted-foreground mb-2">My official email</p>
@@ -199,13 +195,13 @@ export default function AboutPage() {
               {/* Profile Image Card */}
               <div className="relative overflow-hidden rounded-2xl border border-border/50 bg-card shadow-sm aspect-square sm:aspect-[4/3] group">
                 <Image 
-                    src="/samarth-profile_pic.jpg" 
-                    alt="Samarth Pandey"
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    style={{ objectPosition: 'center 20%' }} 
+                  src="/samarth-profile_pic.jpg" 
+                  alt="Samarth Pandey"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ objectPosition: 'center 20%' }} 
                 />
                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/90 to-transparent pointer-events-none" />
               </div>
@@ -257,19 +253,7 @@ export default function AboutPage() {
 
       {/* === TECH STACK === */}
       <TechStack />
-
-      {/*JourneyTimeline commented */}
-      {/*journey-timeline.tsx commented below as per the final instruction block */}
-      {/* <JourneyTimeline />
-      */}
       
-      {/* skills-section commented */}
-      {/* <SkillsSection /> 
-      */}
-
-      {/* goals-section commented */}
-      {/* <GoalsSection />
-      */}
     </div>
   )
 }
