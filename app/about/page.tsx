@@ -36,20 +36,21 @@ export default function AboutPage() {
 
               <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-2xl">
                 <p>
-                  I&apos;m a **Deep Learning Researcher** and **ML Engineer** currently pursuing my B.Tech 
-                  at Thapar Institute of Engineering and Technology. My work is focused on the 
-                  intersection of **Natural Language Processing** and **Multi-modal Systems**, 
-                  where I strive to build AI that doesn&apos;t just predict, but understands.
+                I am a B.Tech student in Computer Science at Thapar Institute of Engineering and Technology,
+                focused on Machine Learning, Natural Language Processing, and applied AI systems.
+                My work centers on building practical solutions that combine solid engineering with modern machine learning techniques.
                 </p>
                 <p>
-                  From architecting hybrid search engines using **BM25 and Semantic Reranking** to developing medical diagnostic tools like **DermIntel**, I treat every project 
-                  as an opportunity to solve a real-world friction point. I believe that the 
-                  strongest models are those built on clean data and robust engineering.
+                  I have developed projects involving semantic search, medical recommendation
+                  systems, and intelligent research automation. These projects emphasize clean
+                  architecture, reproducible workflows, and real-world usability rather than 
+                  experimental prototypes.
                 </p>
                 <p>
-                  Outside of training models on my **M3 Mac**, I focus on academic excellence 
-                  as I prepare for **GATE 2027**, ensuring my practical skills are backed by a 
-                  deep understanding of fundamental Computer Science.
+                  Currently, I am strengthening my foundation in Data Structures, Algorithms, and
+                  Machine Learning fundamentals. I am actively seeking internship opportunities
+                   where I can contribute to real systems and learn from experienced engineers.
+                  
                 </p>
               </div>
 
@@ -87,7 +88,7 @@ export default function AboutPage() {
                     </div>
                     <div>
                       <p className="text-sm font-medium text-foreground">B.Tech (Expected 2027)</p>
-                      <p className="text-xs text-muted-foreground">TIET, Punjab</p>
+                      <p className="text-xs text-muted-foreground">TIET, Patiala, Punjab</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4 p-3 rounded-xl bg-secondary/30">
@@ -104,8 +105,23 @@ export default function AboutPage() {
                       <Brain className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-foreground">Current Status</p>
-                      <p className="text-xs text-muted-foreground">Seeking Internships</p>
+                      <div className="flex items-center gap-4 p-3 rounded-xl bg-secondary/30 border border-emerald-500/10">
+  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+    {/* Swapped icon to a Briefcase or Brain, but kept the emerald theme */}
+    <Briefcase className="h-5 w-5 text-emerald-500" />
+  </div>
+  <div className="flex flex-col">
+    <div className="flex items-center gap-2">
+      <p className="text-sm font-medium text-foreground">Current Status</p>
+      {/* The Pulsing Live Indicator */}
+      <span className="relative flex h-2 w-2">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+      </span>
+    </div>
+    <p className="text-xs text-emerald-500 font-medium">Available for Internships</p>
+  </div>
+</div>
                     </div>
                   </div>
                 </div>
