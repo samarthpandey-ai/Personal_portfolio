@@ -37,8 +37,8 @@ export default function AboutPage() {
 
               <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-2xl">
                 <p>
-                  I am a B.Tech student in Computer Science at <span className="font-semibold text-foreground">Thapar Institute of Engineering and Technology</span>, 
-                  focused on <span className="font-semibold text-foreground">Machine Learning</span>, <span className="font-semibold text-foreground">Natural Language Processing</span>, and applied AI systems. 
+                  I am a B.Tech student in Computer Science at Thapar Institute of Engineering and Technology, 
+                  focused on Machine Learning, Natural Language Processing, and applied AI systems.
                   My work centers on building practical solutions that combine solid engineering with modern machine learning techniques.
                 </p>
                 <p>
