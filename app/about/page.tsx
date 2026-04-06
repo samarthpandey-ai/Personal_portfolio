@@ -37,18 +37,18 @@ export default function AboutPage() {
 
               <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-2xl">
                 <p>
-                  I am a B.Tech student in Computer Science at Thapar Institute of Engineering and Technology, 
-                  focused on Machine Learning, Natural Language Processing, and applied AI systems.
+                  I am a B.Tech student in Computer Science at <span className="font-semibold text-foreground">Thapar Institute of Engineering and Technology</span>, 
+                  focused on <span className="font-semibold text-foreground">Machine Learning</span>, <span className="font-semibold text-foreground">Natural Language Processing</span>, and applied AI systems. 
                   My work centers on building practical solutions that combine solid engineering with modern machine learning techniques.
                 </p>
                 <p>
-                 I have developed projects involving semantic search, medical recommendation systems, and intelligent research automation. 
-                  These projects emphasize clean architecture, reproducible workflows, and real-world usability rather than experimental prototypes.
+                  I have developed projects involving <span className="font-semibold text-foreground">semantic search</span>, <span className="font-semibold text-foreground">medical recommendation systems</span>, 
+                  and <span className="font-semibold text-foreground">intelligent research automation</span>. These projects emphasize <span className="font-semibold text-foreground">clean architecture</span>, 
+                  <span className="font-semibold text-foreground">reproducible workflows</span>, and real-world usability rather than experimental prototypes.
                 </p>
                 <p>
-                  Currently, I am strengthening my foundation in Data Structures, Algorithms, and Machine Learning
-                  fundamentals while preparing for GATE 2027. I am actively seeking internship opportunities where
-                  I can contribute to real systems and learn from experienced engineers.
+                  Currently, I am strengthening my foundation in <span className="font-semibold text-foreground">Data Structures, Algorithms</span>, and 
+                  <span className="font-semibold text-foreground">Machine Learning fundamentals</span> while preparing for <span className="font-semibold text-primary">GATE 2027</span>. I am actively seeking internship opportunities where I can contribute to real systems and learn from experienced engineers.
                 </p>
               </div>
 
@@ -76,16 +76,14 @@ export default function AboutPage() {
             {/* Sidebar Info (Right Side) */}
             <div className="space-y-6">
               
-              {/* Profile Image Card (Classic Photo Look) */}
+              {/* Profile Image Card */}
               <div className="relative overflow-hidden rounded-2xl border border-border/50 bg-card shadow-sm aspect-square sm:aspect-[4/3] group">
                 <img 
-                  src="/samarth-profile_pic.jpg" /* Update this if your file is named differently in the public folder! */
+                  src="/samarth-profile_pic.jpg" 
                   alt="Samarth Pandey"
                   className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
                   style={{ objectPosition: 'center 20%' }} 
                 />
-                
-                {/* Subtle gradient overlay to blend the bottom edge smoothly */}
                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/90 to-transparent pointer-events-none" />
               </div>
 
@@ -93,7 +91,6 @@ export default function AboutPage() {
               <div className="rounded-2xl border border-border/50 bg-card p-7 space-y-4 shadow-sm">
                 <h3 className="text-lg font-semibold text-foreground mb-2">Quick Info</h3>
                 
-                {/* Education */}
                 <div className="flex items-center gap-4 p-3 rounded-xl bg-secondary/30">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
                     <GraduationCap className="h-5 w-5 text-primary" />
@@ -104,7 +101,6 @@ export default function AboutPage() {
                   </div>
                 </div>
 
-                {/* Location */}
                 <div className="flex items-center gap-4 p-3 rounded-xl bg-secondary/30">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
                     <MapPin className="h-5 w-5 text-primary" />
@@ -115,7 +111,6 @@ export default function AboutPage() {
                   </div>
                 </div>
 
-                {/* Pulsing Status Indicator */}
                 <div className="flex items-center gap-4 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/20">
                     <Briefcase className="h-5 w-5 text-emerald-500" />
@@ -132,34 +127,9 @@ export default function AboutPage() {
                   </div>
                 </div>
               </div>
-
-              {/* Languages Card */}
-              {/*  <div className="rounded-2xl border border-border/50 bg-card p-7 shadow-sm">
-                <h3 className="text-lg font-semibold text-foreground mb-5">Languages</h3>
-                <div className="space-y-4">
-                  {[
-                    { lang: "English", level: "Professional", percent: 95 },
-                    { lang: "Hindi", level: "Native", percent: 100 },
-                    { lang: "German", level: "Learning (A2)", percent: 30 },
-                  ].map((item) => (
-                    <div key={item.lang} className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-foreground font-medium">{item.lang}</span>
-                        <span className="text-primary font-mono text-xs">{item.level}</span>
-                      </div>
-                      <div className="h-1.5 rounded-full bg-secondary overflow-hidden">
-                        <div
-                          className="h-full rounded-full bg-gradient-to-r from-primary to-cyan-400 transition-all duration-700"
-                          style={{ width: `${item.percent}%` }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>*/}
+            </div> {/* Sidebar closing */}
+          </div> {/* Grid closing */}
+        </div> {/* Container closing */}
       </section>
 
       <JourneyTimeline />
