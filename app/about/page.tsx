@@ -20,7 +20,8 @@ export default function AboutPage() {
 
         <div className="relative mx-auto max-w-7xl px-6 py-20 md:py-28">
           <div className="grid gap-12 lg:grid-cols-3 lg:gap-16">
-            {/* Main Content */}
+            
+            {/* Main Content (Left Side) */}
             <div className="lg:col-span-2 space-y-8">
               <div className="space-y-6">
                 <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
@@ -72,25 +73,20 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Sidebar Info */}
+            {/* Sidebar Info (Right Side) */}
             <div className="space-y-6">
               
-              {/* Profile Image Card */}
-              <div className="relative group overflow-hidden rounded-2xl border border-border/50 bg-card p-2 flex justify-center items-end h-64 sm:h-72 transition-colors duration-500 shadow-sm">
-                {/* LIGHT MODE BACKGROUND */}
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-100 dark:opacity-0 transition-opacity duration-500" />
-                
-                {/* DARK MODE BACKGROUND */}
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-transparent opacity-0 dark:opacity-50 group-hover:dark:opacity-100 transition-opacity duration-500" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-primary/30 blur-[60px] rounded-full opacity-0 dark:opacity-100" />
-                
-                {/* Your Transparent Photo */}
+              {/* Profile Image Card (Classic Photo Look) */}
+              <div className="relative overflow-hidden rounded-2xl border border-border/50 bg-card shadow-sm aspect-square sm:aspect-[4/3] group">
                 <img 
-                  src="/samarth-profile_pic.jpg" 
+                  src="/samarth-profile_pic.jpg" /* Update this if your file is named differently in the public folder! */
                   alt="Samarth Pandey"
-                  className="relative z-10 object-contain w-full h-[110%] transition-transform duration-700 group-hover:scale-105 drop-shadow-xl dark:drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]"
-                  style={{ objectPosition: 'bottom center' }}
+                  className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                  style={{ objectPosition: 'center 20%' }} 
                 />
+                
+                {/* Subtle gradient overlay to blend the bottom edge smoothly */}
+                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/90 to-transparent pointer-events-none" />
               </div>
 
               {/* Quick Info Card */}
