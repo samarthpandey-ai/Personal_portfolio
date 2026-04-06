@@ -3,8 +3,8 @@
 import { JourneyTimeline } from "@/components/journey-timeline"
 import { SkillsSection } from "@/components/skills-section"
 import { GoalsSection } from "@/components/goals-section"
-import { ContactWidget } from "@/components/contact-widget" // Reusing your new widget
-import { Mail, MapPin, GraduationCap, Sparkles, Download, Brain, Code2 } from "lucide-react"
+import { ContactWidget } from "@/components/contact-widget"
+import { Mail, MapPin, GraduationCap, Sparkles, Download, Brain, Code2, Briefcase } from "lucide-react"
 
 export default function AboutPage() {
   return (
@@ -36,27 +36,23 @@ export default function AboutPage() {
 
               <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-2xl">
                 <p>
-                I am a B.Tech student in Computer Science at Thapar Institute of Engineering and Technology,
-                focused on Machine Learning, Natural Language Processing, and applied AI systems.
-                My work centers on building practical solutions that combine solid engineering with modern machine learning techniques.
+                  I am a B.Tech student in Computer Science at **Thapar Institute of Engineering and Technology**, 
+                  focused on **Machine Learning**, **Natural Language Processing**, and applied AI systems. 
+                  My work centers on building practical solutions that combine solid engineering with modern machine learning techniques.
                 </p>
                 <p>
-                  I have developed projects involving semantic search, medical recommendation
-                  systems, and intelligent research automation. These projects emphasize clean
-                  architecture, reproducible workflows, and real-world usability rather than 
-                  experimental prototypes.
+                  I have developed projects involving **semantic search**, **medical recommendation systems**, 
+                  and **intelligent research automation**. These projects emphasize **clean architecture**, 
+                  **reproducible workflows**, and real-world usability rather than experimental prototypes.
                 </p>
                 <p>
-                  Currently, I am strengthening my foundation in Data Structures, Algorithms, and
-                  Machine Learning fundamentals. I am actively seeking internship opportunities
-                   where I can contribute to real systems and learn from experienced engineers.
-                  
+                  Currently, I am strengthening my foundation in **Data Structures, Algorithms**, and 
+                  **Machine Learning fundamentals** while preparing for **GATE 2027**. I am actively seeking internship opportunities where I can contribute to real systems and learn from experienced engineers.
                 </p>
               </div>
 
               {/* Action buttons */}
               <div className="flex flex-wrap items-center gap-4 pt-4">
-                {/* Integrated your new Widget here */}
                 <div className="w-full sm:w-auto min-w-[200px]">
                   <ContactWidget 
                     email="samarth.ai.official@gmail.com" 
@@ -79,50 +75,45 @@ export default function AboutPage() {
             {/* Sidebar Info */}
             <div className="space-y-6">
               {/* Quick Info Card */}
-              <div className="rounded-2xl border border-border/50 bg-card p-7 space-y-5 shadow-sm">
-                <h3 className="text-lg font-semibold text-foreground">Quick Info</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-3 rounded-xl bg-secondary/30">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                      <GraduationCap className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-foreground">B.Tech (Expected 2027)</p>
-                      <p className="text-xs text-muted-foreground">TIET, Patiala, Punjab</p>
-                    </div>
+              <div className="rounded-2xl border border-border/50 bg-card p-7 space-y-4 shadow-sm">
+                <h3 className="text-lg font-semibold text-foreground mb-2">Quick Info</h3>
+                
+                {/* Education */}
+                <div className="flex items-center gap-4 p-3 rounded-xl bg-secondary/30">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                    <GraduationCap className="h-5 w-5 text-primary" />
                   </div>
-                  <div className="flex items-center gap-4 p-3 rounded-xl bg-secondary/30">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                      <MapPin className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-foreground">Patiala, India</p>
-                      <p className="text-xs text-muted-foreground">Open to Relocation</p>
-                    </div>
+                  <div>
+                    <p className="text-sm font-medium text-foreground">B.Tech (Expected 2027)</p>
+                    <p className="text-xs text-muted-foreground">TIET, Patiala, Punjab</p>
                   </div>
-                  <div className="flex items-center gap-4 p-3 rounded-xl bg-secondary/30">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                      <Brain className="h-5 w-5 text-primary" />
+                </div>
+
+                {/* Location */}
+                <div className="flex items-center gap-4 p-3 rounded-xl bg-secondary/30">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                    <MapPin className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-foreground">Patiala, India</p>
+                    <p className="text-xs text-muted-foreground">Open to Relocation</p>
+                  </div>
+                </div>
+
+                {/* Pulsing Status Indicator */}
+                <div className="flex items-center gap-4 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+                    <Briefcase className="h-5 w-5 text-emerald-500" />
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="flex items-center gap-2">
+                      <p className="text-sm font-medium text-foreground">Status</p>
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                      </span>
                     </div>
-                    <div>
-                      <div className="flex items-center gap-4 p-3 rounded-xl bg-secondary/30 border border-emerald-500/10">
-  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-    {/* Swapped icon to a Briefcase or Brain, but kept the emerald theme */}
-    <Briefcase className="h-5 w-5 text-emerald-500" />
-  </div>
-  <div className="flex flex-col">
-    <div className="flex items-center gap-2">
-      <p className="text-sm font-medium text-foreground">Current Status</p>
-      {/* The Pulsing Live Indicator */}
-      <span className="relative flex h-2 w-2">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-      </span>
-    </div>
-    <p className="text-xs text-emerald-500 font-medium">Available for Internships</p>
-  </div>
-</div>
-                    </div>
+                    <p className="text-xs text-emerald-500 font-medium tracking-tight">Available for Internships</p>
                   </div>
                 </div>
               </div>
@@ -156,7 +147,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Components from your sub-files */}
       <JourneyTimeline />
       <SkillsSection />
       <GoalsSection />
