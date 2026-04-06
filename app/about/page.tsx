@@ -41,48 +41,46 @@ export default function AboutPage() {
               </div>
 
               <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-2xl">
-                <p>
-                  I am a B.Tech student in Computer Science at{" "}
-                  <span className="font-semibold text-foreground">
-                    Thapar Institute of Engineering and Technology
-                  </span>
-                  , focused on{" "}
-                  <span className="font-semibold text-foreground">Machine Learning</span>,{" "}
-                  <span className="font-semibold text-foreground">
-                    Natural Language Processing
-                  </span>
-                  , and applied AI systems. My work centers on building practical solutions
-                  that combine solid engineering with modern machine learning techniques.
-                </p>
+              <p>
+  I am a B.Tech student in Computer Science at{" "}
+  <span className="font-semibold text-foreground">
+    Thapar Institute of Engineering and Technology
+  </span>
+  , focused on{" "}
+  <span className="font-semibold text-foreground">Machine Learning</span>,{" "}
+  <span className="font-semibold text-foreground">
+    Natural Language Processing
+  </span>
+  , and applied AI systems. I build software that combines machine learning
+  with clean, reliable implementation.
+</p>
 
-                <p>
-                  I have developed projects involving{" "}
-                  <span className="font-semibold text-foreground">semantic search</span>,{" "}
-                  <span className="font-semibold text-foreground">
-                    medical recommendation systems
-                  </span>
-                  , and{" "}
-                  <span className="font-semibold text-foreground">
-                    intelligent research automation
-                  </span>
-                  . These projects emphasize{" "}
-                  <span className="font-semibold text-foreground">clean architecture</span>,{" "}
-                  <span className="font-semibold text-foreground">reproducible workflows</span>
-                  , and real-world usability rather than experimental prototypes.
-                </p>
+<p>
+  I have worked on{" "}
+  <span className="font-semibold text-foreground">semantic search</span>,{" "}
+  <span className="font-semibold text-foreground">
+    medical recommendation systems
+  </span>
+  , and{" "}
+  <span className="font-semibold text-foreground">
+    intelligent research automation
+  </span>
+  . My projects focus on data pipelines, model integration, and interfaces
+  that make AI systems usable in practice.
+</p>
 
-                <p>
-                  Currently, I am deepening my foundation in{" "}
-                  <span className="font-semibold text-foreground">
-                    Data Structures, Algorithms
-                  </span>{" "}
-                  and{" "}
-                  <span className="font-semibold text-foreground">
-                    Machine Learning fundamentals
-                  </span>
-                  . I am actively seeking internship opportunities where I can apply my
-                  skills to real-world systems and grow alongside experienced engineers.
-                </p>
+<p>
+  Currently, I am strengthening my foundation in{" "}
+  <span className="font-semibold text-foreground">
+    Data Structures and Algorithms
+  </span>{" "}
+  and{" "}
+  <span className="font-semibold text-foreground">
+    Machine Learning fundamentals
+  </span>
+  while preparing for internship roles. I am looking for opportunities to
+  work on real codebases and build stronger engineering skills.
+</p>
               </div>
 
               {/* Action buttons */}
